@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Media, ResponsiveEmbed, ListGroup } from "react-bootstrap";
 import { connect } from "react-redux";
 import { newVideo } from "../../redux/actionCreators/video";
-import ReactPlayer from "react-player";
-import AspectRatio from "react-aspect-ratio";
 class RecommendedItem extends Component {
   playerRef = React.createRef();
   mediaRef = React.createRef();

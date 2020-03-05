@@ -1,19 +1,30 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { checkTokenAndReturn, getUser } from "./axios";
+import * as actions from "./redux/actionCreators";
 import Spinner from "./components/Spinner/Spinner";
 const TemplatePage = React.lazy(() => import("./components/Template/Template"));
-class App extends React.Component {
+
+class App extends Component {
+  componentDidMount() {
+    if (checkTokenAndReturn()) {
+      this.props.getUser();
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <BrowserRouter>
-          <React.Suspense fallback={<Spinner />}>
-            <TemplatePage />
-          </React.Suspense>
-        </BrowserRouter>
+        <React.Suspense fallback={<Spinner />}>
+          <TemplatePage />
+        </React.Suspense>
       </div>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  getUser: () => dispatch(actions.authActions.GetUser())
+});
+
+export default connect(null, mapDispatchToProps)(App);

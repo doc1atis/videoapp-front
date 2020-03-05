@@ -1,45 +1,17 @@
 import React, { Component } from "react";
-import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
-import SearchBar from "../SearchBar/SearchBar";
+import { Container, Row, Col } from "react-bootstrap";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Recommendation from "../Recommendation/Recommendation";
 import "./Template.css";
 import "./Template2.css";
+import Navigation from "../Navigation/Navigation";
 import { Link } from "react-router-dom";
+
 export default class Template extends Component {
   render() {
     return (
       <>
-        <Navbar
-          collapseOnSelect
-          expand="lg"
-          className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top"
-        >
-          <div className="container">
-            <Link className="navbar-brand" to="/">
-              Streamy
-            </Link>
-            <SearchBar />
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className="ml-auto">
-                <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/signup">
-                      Sign Up
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/login">
-                      Log In
-                    </Link>
-                  </li>
-                </ul>
-              </Nav>
-            </Navbar.Collapse>
-          </div>
-        </Navbar>
+        <Navigation />
         <header className="masthead text-center text-white">
           <div className="masthead-content">
             <Container fluid>
