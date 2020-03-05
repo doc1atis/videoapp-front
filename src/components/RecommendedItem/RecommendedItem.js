@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Media } from "react-bootstrap";
 import { connect } from "react-redux";
-import newVideo from "../../redux/actionCreators/newVideo";
+import { newVideo } from "../../redux/actionCreators/newVideo";
 class RecommendedItem extends Component {
   playVideo = () => {
     this.props.newVideo("https://www.youtube.com/watch?v=c09m5f7Gnic");

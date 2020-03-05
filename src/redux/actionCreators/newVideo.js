@@ -1,7 +1,8 @@
 import { NEW_VIDEO } from "../actionTypes/actionTypes";
-export default function(videoLink) {
+
+export const newVideo = videoLink => {
   return {
     type: NEW_VIDEO,
     payload: videoLink
   };
-}
+};
