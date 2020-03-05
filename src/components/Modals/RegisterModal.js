@@ -45,11 +45,15 @@ class UIModal extends React.Component {
     return (
       <>
         {!this.props.isAuth ? (
-          <Button variant="primary" onClick={this.handleShow}>
-            Sign Up
-          </Button>
+          <li className="nav-item">
+            <Button variant="primary" onClick={this.handleShow}>
+              Sign Up
+            </Button>
+          </li>
         ) : (
-          <p className="text-light">Logged in | {this.props.isAuth.username}</p>
+          <li className="text-light nav-link">
+            Logged in | {this.props.isAuth.username}
+          </li>
         )}
 
         <Modal show={this.state.show} onHide={this.handleClose}>
