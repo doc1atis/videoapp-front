@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import Template from "./components/Template/Template";
 import { connect } from "react-redux";
 import { checkTokenAndReturn, getUser } from "./axios";
 import * as actions from "./redux/actionCreators";
+import Spinner from "./components/Spinner/Spinner";
+const TemplatePage = React.lazy(() => import("./components/Template/Template"));
 
 class App extends Component {
   componentDidMount() {
@@ -14,7 +15,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Template />
+        <React.Suspense fallback={<Spinner />}>
+          <TemplatePage />
+        </React.Suspense>
       </div>
     );
   }

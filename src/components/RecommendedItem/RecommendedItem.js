@@ -1,29 +1,35 @@
 import React, { Component } from "react";
-import { Media } from "react-bootstrap";
+import { Media, ResponsiveEmbed, ListGroup } from "react-bootstrap";
 import { connect } from "react-redux";
-import { newVideo } from "../../redux/actionCreators/newVideo";
+import { newVideo } from "../../redux/actionCreators/video";
 class RecommendedItem extends Component {
+  playerRef = React.createRef();
+  mediaRef = React.createRef();
   playVideo = () => {
-    this.props.newVideo("https://www.youtube.com/watch?v=c09m5f7Gnic");
+    this.props.newVideo(this.props.videoLink);
   };
   render() {
     return (
-      <Media>
-        <img
-          style={{
-            height: "8rem",
-            width: "15rem",
-            borderRadius: "3px",
-            cursor: "pointer"
-          }}
-          src="https://cdn2.f-cdn.com/contestentries/524172/18597985/5765fa2e0c62b_thumb900.jpg"
-          alt="video thumbnail"
-          onClick={this.playVideo}
-        />
-        <Media.Body>
-          <h1 style={{ color: "black" }}>title</h1>
-        </Media.Body>
-      </Media>
+      <ListGroup.Item>
+        <ListGroup.Item>
+          <Media>
+            <ResponsiveEmbed aspectRatio="16by9" style={{ maxWidth: "200px" }}>
+              <img
+                src={this.props.videoThumbnail}
+                height="inherit"
+                width="100%"
+                style={{ cursor: "pointer" }}
+                onClick={this.playVideo}
+              />
+            </ResponsiveEmbed>
+            <Media.Body>
+              <p style={{ color: "black", fontSize: "1rem" }}>
+                {this.props.videoTitle}
+              </p>
+            </Media.Body>
+          </Media>
+        </ListGroup.Item>
+      </ListGroup.Item>
     );
   }
 }

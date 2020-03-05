@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Recommendation from "../Recommendation/Recommendation";
 import "./Template.css";

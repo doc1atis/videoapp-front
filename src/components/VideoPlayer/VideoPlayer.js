@@ -2,9 +2,34 @@ import React, { Component } from "react";
 import { Card, ResponsiveEmbed } from "react-bootstrap";
 import "./VideoPlayer.css";
 import ReactPlayer from "react-player";
+import Spinner from "../Spinner/Spinner";
 import { connect } from "react-redux";
 class VideoPlayer extends Component {
   render() {
+    let display = <Spinner />;
+    if (this.props.videoLink) {
+      display = (
+        <ResponsiveEmbed aspectRatio="16by9">
+          <ReactPlayer
+            url={this.props.videoLink}
+            controls
+            width="100%"
+            height="100%"
+            pip
+            playing={this.props.playVideo}
+            config={{
+              youtube: {
+                playerVars: {
+                  modestbranding: 1,
+                  fs: 0,
+                  origin: "http://localhost:3000"
+                }
+              }
+            }}
+          />
+        </ResponsiveEmbed>
+      );
+    }
     return (
       <Card
         style={{
@@ -14,21 +39,14 @@ class VideoPlayer extends Component {
           height: "auto"
         }}
       >
-        <ResponsiveEmbed aspectRatio="16by9">
-          <ReactPlayer
-            url={this.props.videoLink}
-            controls
-            width="100%"
-            height="100%"
-            pip
-          />
-        </ResponsiveEmbed>
+        {display}
       </Card>
     );
   }
 }
 const mapStateToprops = entireState => {
-  // console.log(entireState);
-  return { videoLink: entireState.newVideoReducer.videoLink };
+  let { videoLink, playVideo } = entireState.newVideoReducer;
+
+  return { videoLink, playVideo };
 };
 export default connect(mapStateToprops, {})(VideoPlayer);
