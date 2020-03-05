@@ -3,13 +3,16 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actionCreators";
 
-class UIModal extends React.Component {
+class LoginModal extends React.Component {
   state = {
     show: false,
     username: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
+    password: ""
+  };
+
+  logout = () => {
+    localStorage.removeItem("token");
+    this.props.logout();
   };
 
   handleClose = () => this.setState({ show: false });
@@ -20,18 +23,13 @@ class UIModal extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    if (this.state.password !== this.state.confirmPassword) {
-      console.log("password confirm doesn't match");
-      return;
-    }
+
     let form = {
-      email: this.state.email,
       password: this.state.password,
       username: this.state.username
     };
     try {
-      await this.props.register(form);
-      localStorage.setItem("token", this.props.isAuth.token);
+      await this.props.login(form);
     } catch (error) {
       console.log({ error });
     }
@@ -42,11 +40,17 @@ class UIModal extends React.Component {
     return (
       <>
         {!this.props.isAuth ? (
-          <Button variant="primary" onClick={this.handleShow}>
-            Sign Up
+          <Button
+            className="ml-2"
+            variant="secondary"
+            onClick={this.handleShow}
+          >
+            Login
           </Button>
         ) : (
-          <p className="text-light">Logged in | {this.props.isAuth.username}</p>
+          <Button className="ml-2" variant="secondary" onClick={this.logout}>
+            Logout
+          </Button>
         )}
 
         <Modal show={this.state.show} onHide={this.handleClose}>
@@ -66,16 +70,7 @@ class UIModal extends React.Component {
                   placeholder="Enter username"
                 />
               </Form.Group>
-              <Form.Group controlId="formGroupEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  type="email"
-                  onChange={this.handleChange}
-                  name="email"
-                  value={this.state.email}
-                  placeholder="Enter email"
-                />
-              </Form.Group>
+
               <Form.Group controlId="formGroupPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
@@ -86,16 +81,6 @@ class UIModal extends React.Component {
                   placeholder="Password"
                 />
               </Form.Group>
-              <Form.Group controlId="formGroupPassword2">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  onChange={this.handleChange}
-                  name="confirmPassword"
-                  value={this.state.confirmPassword}
-                  placeholder="Confirm password"
-                />
-              </Form.Group>
             </Form>
           </Modal.Body>
           <Modal.Footer>
@@ -103,7 +88,7 @@ class UIModal extends React.Component {
               Close
             </Button>
             <Button variant="primary" onClick={this.handleSubmit}>
-              Sign Up
+              Login
             </Button>
           </Modal.Footer>
         </Modal>
@@ -112,14 +97,13 @@ class UIModal extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isAuth: state.authReducer.isAuth
-  };
-};
-
-const mapDispatchToProps = dispatch => ({
-  register: data => dispatch(actions.authActions.Register(data))
+const mapStateToProps = state => ({
+  isAuth: state.authReducer.isAuth
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UIModal);
+const mapDispatchToProps = dispatch => ({
+  login: data => dispatch(actions.authActions.Login(data)),
+  logout: () => dispatch(actions.authActions.Logout())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);

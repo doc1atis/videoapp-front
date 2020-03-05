@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Modal from "../Modal/Modal";
+import RegisterModal from "../Modals/RegisterModal";
+import LoginModal from "../Modals/LoginModal";
 import { connect } from "react-redux";
 
 class Navigation extends Component {
@@ -23,18 +24,12 @@ class Navigation extends Component {
               <Nav className="ml-auto">
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    {/* <Link className="nav-link" to="/signup">
-                      Sign Up
-                    </Link> */}
-                    <Modal />
+                    <RegisterModal />
                   </li>
-                  {!this.props.isAuth && (
-                    <li className="nav-item">
-                      <Link className="nav-link" to="/login">
-                        Log In
-                      </Link>
-                    </li>
-                  )}
+
+                  <li className="nav-item">
+                    <LoginModal />
+                  </li>
                 </ul>
               </Nav>
             </Navbar.Collapse>

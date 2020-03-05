@@ -6,10 +6,8 @@ import * as actions from "./redux/actionCreators";
 
 class App extends Component {
   componentDidMount() {
-    let loggedInToken = checkTokenAndReturn();
-
-    if (loggedInToken) {
-      this.props.getUser(loggedInToken._id);
+    if (checkTokenAndReturn()) {
+      this.props.getUser();
     }
   }
 
@@ -22,10 +20,8 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getUser: () => dispatch(actions.authActions.GetUser())
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  getUser: () => dispatch(actions.authActions.GetUser())
+});
 
 export default connect(null, mapDispatchToProps)(App);
