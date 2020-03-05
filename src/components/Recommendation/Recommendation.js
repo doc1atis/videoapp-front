@@ -18,6 +18,7 @@ class Recommendation extends Component {
                 videoTitle={video.snippet.title}
                 thumbHeight={video.snippet.thumbnails.high.height}
                 thumbWidth={video.snippet.thumbnails.high.width}
+                videoId={video.id.videoId}
                 key={video.id.videoId + uuidv4()}
               />
             );
@@ -29,6 +30,11 @@ class Recommendation extends Component {
   }
 }
 const mapStateToProps = entireState => {
-  return { videos: entireState.searchVideoReducer.videos };
+  let videos = entireState.searchVideoReducer.videos;
+  if (!videos.length) {
+    videos = entireState.relatedVideoReducer.videos;
+  }
+
+  return { videos };
 };
 export default connect(mapStateToProps, {})(Recommendation);

@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { checkTokenAndReturn, getUser } from "./axios";
+import { checkTokenAndReturn } from "./axios";
 import * as actions from "./redux/actionCreators";
-import { randomVideo } from "./redux/actionCreators/video";
+import { randomVideo, relatedVideos } from "./redux/actionCreators/video";
 import Spinner from "./components/Spinner/Spinner";
 const TemplatePage = React.lazy(() => import("./components/Template/Template"));
 
 class App extends Component {
   componentDidMount() {
-    if (checkTokenAndReturn()) {
+    const user = checkTokenAndReturn();
+    if (user) {
       this.props.getUser();
     }
     this.props.randomVideo();
+    // get id from user likedVideos
+    this.props.relatedVideos("EAezax2ugQU");
   }
 
   render() {
@@ -27,7 +30,8 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => ({
   getUser: () => dispatch(actions.authActions.GetUser()),
-  randomVideo: () => dispatch(randomVideo())
+  randomVideo: () => dispatch(randomVideo()),
+  relatedVideos: videoId => dispatch(relatedVideos(videoId))
 });
 
 export default connect(null, mapDispatchToProps)(App);
