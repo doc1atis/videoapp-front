@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import RegisterModal from "../Modals/RegisterModal";
 import LoginModal from "../Modals/LoginModal";
@@ -18,7 +19,7 @@ class Navigation extends Component {
             <Link className="navbar-brand" to="/">
               Streamy
             </Link>
-
+            <SearchBar />
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="ml-auto">
