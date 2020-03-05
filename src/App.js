@@ -1,14 +1,27 @@
-import React from "react";
+import React, { Component } from "react";
 import Template from "./components/Template/Template";
-import { BrowserRouter } from "react-router-dom";
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
+import { connect } from "react-redux";
+import { checkTokenAndReturn, getUser } from "./axios";
+import * as actions from "./redux/actionCreators";
+
+class App extends Component {
+  componentDidMount() {
+    if (checkTokenAndReturn()) {
+      this.props.getUser();
+    }
+  }
+
+  render() {
+    return (
+      <div className="App">
         <Template />
-      </BrowserRouter>
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  getUser: () => dispatch(actions.authActions.GetUser())
+});
+
+export default connect(null, mapDispatchToProps)(App);

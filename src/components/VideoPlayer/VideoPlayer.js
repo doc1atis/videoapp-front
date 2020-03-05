@@ -28,7 +28,7 @@ class VideoPlayer extends Component {
   }
 }
 const mapStateToprops = entireState => {
-  console.log(entireState);
+  // console.log(entireState);
   return { videoLink: entireState.newVideoReducer.videoLink };
 };
 export default connect(mapStateToprops, {})(VideoPlayer);
