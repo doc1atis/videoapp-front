@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav, Container, Row, Col } from "react-bootstrap";
+import SearchBar from "../SearchBar/SearchBar";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Recommendation from "../Recommendation/Recommendation";
 import "./Template.css";
@@ -18,8 +19,9 @@ export default class Template extends Component {
             <Link className="navbar-brand" to="/">
               Streamy
             </Link>
-
+            <SearchBar />
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="ml-auto">
                 <ul className="navbar-nav">

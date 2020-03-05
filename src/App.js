@@ -1,14 +1,19 @@
 import React from "react";
-import Template from "./components/Template/Template";
 import { BrowserRouter } from "react-router-dom";
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Template />
-      </BrowserRouter>
-    </div>
-  );
+import Spinner from "./components/Spinner/Spinner";
+const TemplatePage = React.lazy(() => import("./components/Template/Template"));
+class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <React.Suspense fallback={<Spinner />}>
+            <TemplatePage />
+          </React.Suspense>
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
 export default App;
