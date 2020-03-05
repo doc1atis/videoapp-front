@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import { Media, ResponsiveEmbed, ListGroup } from "react-bootstrap";
 import { connect } from "react-redux";
 import { newVideo } from "../../redux/actionCreators/video";
+
 class RecommendedItem extends Component {
-  playerRef = React.createRef();
-  mediaRef = React.createRef();
-  playVideo = () => {
-    this.props.newVideo(this.props.videoLink);
-  };
   render() {
     return (
       <ListGroup.Item>
@@ -15,11 +11,12 @@ class RecommendedItem extends Component {
           <Media>
             <ResponsiveEmbed aspectRatio="16by9" style={{ maxWidth: "200px" }}>
               <img
+                alt=""
                 src={this.props.videoThumbnail}
                 height="inherit"
                 width="100%"
                 style={{ cursor: "pointer" }}
-                onClick={this.playVideo}
+                onClick={() => this.props.newVideo(this.props.videoLink)}
               />
             </ResponsiveEmbed>
             <Media.Body>
@@ -33,7 +30,10 @@ class RecommendedItem extends Component {
     );
   }
 }
-// const mapStateToProps = entireState => {
-//   return {};
+// const mapStateToProps = state => {
+//   return {
+//     videoLink: state.newVideoReducer.videoLink
+//   };
 // };
+
 export default connect(null, { newVideo })(RecommendedItem);

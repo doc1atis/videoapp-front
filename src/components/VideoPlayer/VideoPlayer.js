@@ -4,14 +4,16 @@ import "./VideoPlayer.css";
 import ReactPlayer from "react-player";
 import Spinner from "../Spinner/Spinner";
 import { connect } from "react-redux";
+
 class VideoPlayer extends Component {
   render() {
     let display = <Spinner />;
-    if (this.props.videoLink) {
+
+    if (this.props.currentPlayingLink) {
       display = (
         <ResponsiveEmbed aspectRatio="16by9">
           <ReactPlayer
-            url={this.props.videoLink}
+            url={this.props.currentPlayingLink}
             controls
             width="100%"
             height="100%"
@@ -44,9 +46,9 @@ class VideoPlayer extends Component {
     );
   }
 }
-const mapStateToprops = entireState => {
-  let { videoLink, playVideo } = entireState.newVideoReducer;
+const mapStateToProps = state => {
+  let { currentPlayingLink, playVideo } = state.newVideoReducer;
 
-  return { videoLink, playVideo };
+  return { currentPlayingLink, playVideo };
 };
-export default connect(mapStateToprops, {})(VideoPlayer);
+export default connect(mapStateToProps, {})(VideoPlayer);

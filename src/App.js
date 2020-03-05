@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { checkTokenAndReturn, getUser } from "./axios";
 import * as actions from "./redux/actionCreators";
 import Spinner from "./components/Spinner/Spinner";
-const TemplatePage = React.lazy(() => import("./components/Template/Template"));
+const Main = React.lazy(() => import("./components/Layout/Layout"));
 
 class App extends Component {
   componentDidMount() {
@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <React.Suspense fallback={<Spinner />}>
-          <TemplatePage />
+          <Main />
         </React.Suspense>
       </div>
     );

@@ -1,6 +1,5 @@
 import { NEW_VIDEO } from "../actionTypes/actionTypes";
 import _ from "lodash";
-
 import Axios from "axios";
 
 async function getMostPopularVideos() {
@@ -23,15 +22,15 @@ async function getMostPopularVideos() {
     console.dir(error);
   }
 }
-// let data = await getMostPopularVideos();
 
 const initialState = {
-  videoLink: `https://www.youtube.com/watch?v=EAezax2ugQU`
+  currentPlayingLink: `https://www.youtube.com/watch?v=EAezax2ugQU`
 };
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case NEW_VIDEO:
-      return { ...state, videoLink: action.payload, playVideo: true };
+      return { ...state, currentPlayingLink: action.payload, playVideo: true };
 
     default:
       return state;
