@@ -1,32 +1,10 @@
 import { NEW_VIDEO } from "../actionTypes/actionTypes";
-import _ from "lodash";
 
-import Axios from "axios";
-
-async function getMostPopularVideos() {
-  try {
-    const response = await Axios.get(
-      "https://www.googleapis.com/youtube/v3/videos",
-      {
-        params: {
-          part: "snippet",
-          chart: "mostPopular",
-          regionCode: "US",
-          maxResults: 5,
-          key: process.env.REACT_APP_API_KEY
-        }
-      }
-    );
-    console.log(response.data.items[_.random(0, 4)]);
-    return response.data.items[_.random(0, 4)];
-  } catch (error) {
-    console.dir(error);
-  }
-}
 // let data = await getMostPopularVideos();
-
+// `https://www.youtube.com/watch?v=EAezax2ugQU`
 const initialState = {
-  videoLink: `https://www.youtube.com/watch?v=EAezax2ugQU`
+  videoLink: "",
+  playVideo: false
 };
 export default function(state = initialState, action) {
   switch (action.type) {
