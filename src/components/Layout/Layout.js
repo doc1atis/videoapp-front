@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Comments from "../Comments/Comments";
+import Comments from "../Posts/Posts";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import "./Layout.css";
