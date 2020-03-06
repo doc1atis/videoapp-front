@@ -43,8 +43,7 @@ export const randomVideo = () => async (dispatch, getState) => {
     console.dir(error);
   }
 };
-export const relatedVideos = watchedVidId => {
-  console.log("realted video action creator runs olgy");
+export const relatedVideos = videoId => {
   return async dispatch => {
     try {
       const response = await Axios.get(
@@ -52,7 +51,7 @@ export const relatedVideos = watchedVidId => {
         {
           params: {
             part: "snippet",
-            relatedToVideoId: watchedVidId,
+            relatedToVideoId: videoId,
             type: "video",
             maxResults: 5,
             key: process.env.REACT_APP_API_KEY

@@ -17,6 +17,7 @@ class VideoPlayer extends Component {
             height="100%"
             pip
             playing={this.props.playVideo}
+            className="embed-responsive-item"
             config={{
               youtube: {
                 playerVars: {
@@ -46,7 +47,6 @@ class VideoPlayer extends Component {
 }
 const mapStateToprops = entireState => {
   let { videoLink, playVideo } = entireState.newVideoReducer;
-  console.log(videoLink);
   if (!videoLink) {
     videoLink = `https://www.youtube.com/watch?v=${entireState.randomVideoReducer.video.id}`;
   }
