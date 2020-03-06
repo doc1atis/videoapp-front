@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import RegisterModal from "../Modals/RegisterModal";
@@ -15,7 +15,7 @@ class Navigation extends Component {
           expand="lg"
           className="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top"
         >
-          <div className="container">
+          <Container fluid>
             <Link className="navbar-brand" to="/">
               Streamy
             </Link>
@@ -32,7 +32,7 @@ class Navigation extends Component {
                 </ul>
               </Nav>
             </Navbar.Collapse>
-          </div>
+          </Container>
         </Navbar>
       </div>
     );
