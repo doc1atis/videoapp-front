@@ -48,6 +48,9 @@ class VideoPlayer extends Component {
 }
 const mapStateToProps = state => {
   let { currentPlayingLink, playVideo } = state.newVideoReducer;
+  if (!currentPlayingLink) {
+    currentPlayingLink = `https://www.youtube.com/watch?v=${state.randomVideoReducer.video.id}`;
+  }
 
   return { currentPlayingLink, playVideo };
 };

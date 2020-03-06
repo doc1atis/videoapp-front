@@ -24,7 +24,8 @@ async function getMostPopularVideos() {
 }
 
 const initialState = {
-  currentPlayingLink: `https://www.youtube.com/watch?v=EAezax2ugQU`
+  currentPlayingLink: `https://www.youtube.com/watch?v=EAezax2ugQU`,
+  playVideo: false
 };
 
 export default function(state = initialState, action) {

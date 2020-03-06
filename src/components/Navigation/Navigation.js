@@ -24,9 +24,7 @@ class Navigation extends Component {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="ml-auto">
                 <ul className="navbar-nav">
-                  <li className="nav-item">
-                    <RegisterModal />
-                  </li>
+                  <RegisterModal />
 
                   <li className="nav-item">
                     <LoginModal />
