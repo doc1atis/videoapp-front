@@ -10,3 +10,6 @@ export const REGISTER = "REGISTER";
 export const GET_USER = "GET_USER";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
+
+// post
+export const CREATE_POST = "CREATE_POST";

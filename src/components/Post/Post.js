@@ -4,7 +4,7 @@ import Comment from "../Comment/Comment";
 
 class Post extends Component {
   state = {
-    comments: [1, 2, 3]
+    comments: []
   };
 
   render() {

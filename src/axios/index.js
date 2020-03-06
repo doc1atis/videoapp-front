@@ -33,6 +33,7 @@ export const register = async data => {
     return err.response;
   }
 };
+
 export const login = async data => {
   try {
     let res = await Axios.post("/api/users/login", data);
@@ -54,6 +55,15 @@ export const getUser = async () => {
 export const deleteUser = async id => {
   try {
     let response = await Axios.delete("/api/users");
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const createPost = async data => {
+  try {
+    let response = await Axios.post("/api/posts", data);
     return response;
   } catch (err) {
     return err.response;

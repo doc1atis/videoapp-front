@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import Post from "../Post/Post";
+import AddPost from "../AddPost/AddPost";
 import { connect } from "react-redux";
 
 class Posts extends Component {
   state = {
-    posts: [1, 1]
+    posts: [1],
+    show: false
   };
+
   render() {
     let posts = <div>No Posts</div>;
 
@@ -21,7 +24,10 @@ class Posts extends Component {
           <div className="panel panel-default widget">
             <div className="panel-heading">
               <span className="glyphicon glyphicon-post"></span>
-              <h3 className="panel-title">Recent Posts</h3>
+              <div className="mt-2">
+                <AddPost />
+              </div>
+              <h3 className="panel-title">Recent Comments</h3>
               {posts}
             </div>
             <div className="panel-body">

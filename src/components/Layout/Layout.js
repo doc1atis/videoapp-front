@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Comments from "../Posts/Posts";
+import Posts from "../Posts/Posts";
+
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import "./Layout.css";
@@ -12,7 +13,7 @@ export default class Layout extends Component {
       <>
         <Navigation />
         <Main />
-        <Comments />
+        <Posts />
         <Footer />
       </>
     );
