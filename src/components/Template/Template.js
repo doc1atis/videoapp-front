@@ -5,8 +5,6 @@ import Recommendation from "../Recommendation/Recommendation";
 import "./Template.css";
 import "./Template2.css";
 import Navigation from "../Navigation/Navigation";
-import { Link } from "react-router-dom";
-
 export default class Template extends Component {
   render() {
     return (
@@ -16,11 +14,16 @@ export default class Template extends Component {
           <div className="masthead-content">
             <Container fluid>
               <Row>
-                <Col sm={12} md={7} lg={7} xl={6}>
+                <Col
+                  sm={12}
+                  md={{ span: 12, offset: 0 }}
+                  lg={{ span: 10, offset: 1 }}
+                  xl={{ span: 7, offset: 0 }}
+                >
                   <VideoPlayer />
                 </Col>
 
-                <Col sm={12} md={5} lg={5} xl={{ span: 4, offset: 1 }}>
+                <Col sm={12} md={12} lg={12} xl={{ span: 4, offset: -1 }}>
                   <Recommendation />
                 </Col>
               </Row>

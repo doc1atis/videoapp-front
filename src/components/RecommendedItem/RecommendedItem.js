@@ -1,19 +1,23 @@
 import React, { Component } from "react";
 import { Media, ResponsiveEmbed, ListGroup } from "react-bootstrap";
 import { connect } from "react-redux";
-import { newVideo, relatedVideos } from "../../redux/actionCreators/video";
+import {
+  newVideo,
+  relatedVideos,
+  searchVideo
+} from "../../redux/actionCreators/video";
 import ReactPlayer from "react-player";
 class RecommendedItem extends Component {
-  playerRef = React.createRef();
-  mediaRef = React.createRef();
   playVideo = () => {
-    this.props.newVideo(this.props.videoLink);
-    this.props.relatedVideos(this.props.videoId);
+    this.props.searchVideo([]); // no request is sent
+    this.props.relatedVideos(this.props.videoId); // request  is sent
+    this.props.newVideo(this.props.videoLink); // no request is sent
+    window.scrollTo(0, 0); // force the widow to scroll up
   };
   render() {
     return (
       <ListGroup.Item>
-        <ListGroup.Item>
+        <ListGroup.Item style={{ backgroundColor: "#F2F2F2" }}>
           <Media>
             <ResponsiveEmbed aspectRatio="16by9" style={{ maxWidth: "200px" }}>
               {/* <img
@@ -30,10 +34,22 @@ class RecommendedItem extends Component {
                 light
                 onClick={this.playVideo}
                 playing={false}
+                className="embed-responsive-item"
               />
             </ResponsiveEmbed>
             <Media.Body>
-              <p style={{ color: "black", fontSize: "1rem" }}>
+              <p
+                className="ml-1"
+                style={{
+                  color: "black",
+                  fontSize: "0.8rem",
+                  lineHeight: "1.4rem",
+                  overflow: "hidden",
+                  display: "-webkit-box",
+                  WebkitLineClamp: "2",
+                  WebkitBoxOrient: "vertical"
+                }}
+              >
                 {this.props.videoTitle}
               </p>
             </Media.Body>
@@ -46,4 +62,6 @@ class RecommendedItem extends Component {
 // const mapStateToProps = entireState => {
 //   return {};
 // };
-export default connect(null, { newVideo, relatedVideos })(RecommendedItem);
+export default connect(null, { newVideo, relatedVideos, searchVideo })(
+  RecommendedItem
+);

@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { searchVideo } from "../../redux/actionCreators/video";
 class SearchBar extends Component {
   handleChange = e => {
-    // console.dir(e.target);
     const input = e.target;
     input.value = e.target.value;
   };
@@ -13,22 +12,22 @@ class SearchBar extends Component {
     e.target.value = "";
   };
   handleSubmit = async e => {
-    if (e.keyCode === 13) {
-      e.persist();
-
+    e.persist();
+    if (e.keyCode === 13 && e.target.value) {
       try {
+        //   search for videos
         const response = await Axios.get(
           "https://www.googleapis.com/youtube/v3/search",
           {
             params: {
               part: "snippet",
-              maxResults: 5,
+              maxResults: 6,
               q: e.target.value,
               key: process.env.REACT_APP_API_KEY
             }
           }
         );
-
+        // put the videos into the state(a reducer)
         this.props.searchVideo(response.data.items);
         e.target.value = "";
       } catch (error) {
@@ -61,4 +60,5 @@ class SearchBar extends Component {
     );
   }
 }
+
 export default connect(null, { searchVideo })(SearchBar);
