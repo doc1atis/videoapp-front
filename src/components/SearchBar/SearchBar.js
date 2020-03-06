@@ -21,7 +21,7 @@ class SearchBar extends Component {
           {
             params: {
               part: "snippet",
-              maxResults: 6,
+              maxResults: 20,
               q: e.target.value,
               key: process.env.REACT_APP_API_KEY
             }

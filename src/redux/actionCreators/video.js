@@ -29,7 +29,7 @@ export const randomVideo = () => async (dispatch, getState) => {
           part: "snippet",
           chart: "mostPopular",
           regionCode: "US",
-          maxResults: 5,
+          maxResults: 50,
           key: process.env.REACT_APP_API_KEY
         }
       }
@@ -37,7 +37,7 @@ export const randomVideo = () => async (dispatch, getState) => {
 
     dispatch({
       type: RANDOM_VIDEO,
-      payload: response.data.items[_.random(0, 4)]
+      payload: response.data.items[_.random(0, 49)]
     });
   } catch (error) {
     console.dir(error);
@@ -53,7 +53,7 @@ export const relatedVideos = videoId => {
             part: "snippet",
             relatedToVideoId: videoId,
             type: "video",
-            maxResults: 5,
+            maxResults: 20,
             key: process.env.REACT_APP_API_KEY
           }
         }
