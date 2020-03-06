@@ -5,15 +5,14 @@ import { connect } from "react-redux";
 
 class Posts extends Component {
   state = {
-    posts: [1],
     show: false
   };
 
   render() {
     let posts = <div>No Posts</div>;
 
-    if (this.state.posts) {
-      posts = this.state.posts.map((post, i) => {
+    if (this.props.posts) {
+      posts = this.props.posts.map((post, i) => {
         return <Post key={i} post={post} />;
       });
     }
@@ -21,13 +20,12 @@ class Posts extends Component {
     return (
       <div className="container mb-5">
         <div className="row">
-          <div className="panel panel-default widget">
+          <div className="panel panel-default widget col-12">
             <div className="panel-heading">
-              <span className="glyphicon glyphicon-post"></span>
               <div className="mt-2">
                 <AddPost />
               </div>
-              <h3 className="panel-title">Recent Comments</h3>
+              <h3 className="panel-title ">Recent Comments</h3>
               {posts}
             </div>
             <div className="panel-body">
@@ -40,7 +38,9 @@ class Posts extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  posts: state.postReducer.posts
+});
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

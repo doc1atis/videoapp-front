@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Comment from "../Comment/Comment";
+import Moment from "react-moment";
 
 class Post extends Component {
   state = {
@@ -9,6 +10,10 @@ class Post extends Component {
 
   render() {
     let comments = <h1>No Comments</h1>;
+
+    console.log(this.props);
+
+    let { post } = this.props;
 
     if (this.state.comments) {
       comments = this.state.comments.map((comment, i) => (
@@ -25,20 +30,20 @@ class Post extends Component {
               alt=""
             />
           </div>
-          <div className="col-xs-10 col-md-11 ">
+          <div className="col-xs-10 col-md-11">
             <div>
               {/* <a href="http://bootsnipp.com/BhaumikPatel/snippets/4ldn">
                           Cool Sign Up
                         </a> */}
               <div className="mic-info">
-                By: <a href="#">Bhaumik Patel</a> on 11 Nov 2013
+                By: <a href="#">{post.owner.username}</a> on{" "}
+                <a href="#">
+                  <Moment format="DD MMM YYYY" date={post.createdAt} />
+                </a>
+                {/* 11 Nov 2013 */}
               </div>
             </div>
-            <div className="comment-text">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-              erat volutpat. Ut wisi enim
-            </div>
+            <div className="comment-text">{post.body}</div>
             <div className="action">
               {/* <button
                           type="button"

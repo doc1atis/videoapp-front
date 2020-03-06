@@ -15,7 +15,7 @@ class AddPost extends Component {
 
     let payload = {
       body: this.state.body,
-      videoId: this.props.currentPlayingLink,
+      videoId: this.props.currentPlayingLink
     };
 
     this.props.createPost(payload);
@@ -24,12 +24,13 @@ class AddPost extends Component {
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-
     return (
       <Form>
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label onClick={() => this.setState({ show: !this.state.show })}>
-            <Button variant="primary">Add Comment</Button>
+            <Button variant={!this.state.show ? "primary" : "secondary"}>
+              Add Comment
+            </Button>
           </Form.Label>
           {this.state.show && (
             <div>
@@ -40,7 +41,12 @@ class AddPost extends Component {
                 name="body"
                 value={this.state.body}
               />
-              <Button variant="secondary" onClick={this.handleSubmit}>
+              <br />
+              <Button
+                variant="secondary"
+                classNames="mb-2"
+                onClick={this.handleSubmit}
+              >
                 Submit
               </Button>
             </div>

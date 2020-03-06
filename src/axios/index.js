@@ -69,3 +69,12 @@ export const createPost = async data => {
     return err.response;
   }
 };
+
+export const getPosts = async videoId => {
+  try {
+    let response = await Axios.get(`/api/posts/${videoId}`);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};

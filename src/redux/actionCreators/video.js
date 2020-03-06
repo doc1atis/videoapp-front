@@ -21,7 +21,8 @@ export const showFirstVideo = function(videoLink) {
 export const searchVideo = function(videos) {
   return { type: SEARCH_VIDEO, payload: videos };
 };
-export const randomVideo = () => async (dispatch, getState) => {
+
+export const randomVideo = () => async dispatch => {
   try {
     const response = await Axios.get(
       "https://www.googleapis.com/youtube/v3/videos",
@@ -45,7 +46,7 @@ export const randomVideo = () => async (dispatch, getState) => {
   }
 };
 export const relatedVideos = watchedVidId => {
-  console.log("realted video action creator runs olgy");
+  console.log("realted video action creator runs olgy", watchedVidId);
   return async dispatch => {
     try {
       const response = await Axios.get(

@@ -8,6 +8,9 @@ export default function(state = initialState, action) {
     case actionTypes.CREATE_POST:
       return { ...state, posts: [...state.posts, action.payload] };
 
+    case actionTypes.GET_POSTS:
+      return { ...state, posts: action.payload };
+
     default:
       return state;
   }
