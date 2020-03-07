@@ -13,6 +13,7 @@ class VideoPlayer extends Component {
           <ReactPlayer
             url={this.props.videoLink}
             controls
+            playsinline
             width="100%"
             height="100%"
             pip
