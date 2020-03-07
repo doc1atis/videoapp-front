@@ -6,7 +6,7 @@ import { v4 as uuid } from "uuid";
 class Recommendation extends Component {
   render() {
     return (
-      <Card>
+      <Card style={{ padding: "0.5rem", backgroundColor: "#221E20" }}>
         {this.props.videos.map(video => {
           const { snippet, id } = video;
           const { title, thumbnails } = snippet;

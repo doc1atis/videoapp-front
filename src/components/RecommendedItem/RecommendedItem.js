@@ -16,10 +16,17 @@ class RecommendedItem extends Component {
   };
   render() {
     return (
-      <ListGroup.Item>
-        <ListGroup.Item style={{ backgroundColor: "#F2F2F2" }}>
-          <Media>
-            <ResponsiveEmbed aspectRatio="16by9" style={{ maxWidth: "200px" }}>
+      <ListGroup.Item
+        style={{
+          backgroundColor: "#F2F2F2",
+          marginBottom: "10px",
+          borderRadius: "3px",
+          paddingRight: "1px"
+        }}
+      >
+        <Media>
+          <div style={{ minWidth: "150px", height: "auto" }}>
+            <ResponsiveEmbed aspectRatio="16by9">
               {/* <img
                 src={this.props.videoThumbnail}
                 height="inherit"
@@ -37,24 +44,23 @@ class RecommendedItem extends Component {
                 className="embed-responsive-item"
               />
             </ResponsiveEmbed>
-            <Media.Body>
-              <p
-                className="ml-1"
-                style={{
-                  color: "black",
-                  fontSize: "0.8rem",
-                  lineHeight: "1.4rem",
-                  overflow: "hidden",
-                  display: "-webkit-box",
-                  WebkitLineClamp: "2",
-                  WebkitBoxOrient: "vertical"
-                }}
-              >
-                {this.props.videoTitle}
-              </p>
-            </Media.Body>
-          </Media>
-        </ListGroup.Item>
+          </div>
+          <Media.Body>
+            <p
+              style={{
+                color: "black",
+                fontSize: "0.8rem",
+                lineHeight: "1.2rem",
+                overflow: "hidden",
+                display: "-webkit-box",
+                WebkitLineClamp: "2",
+                WebkitBoxOrient: "vertical"
+              }}
+            >
+              {this.props.videoTitle}
+            </p>
+          </Media.Body>
+        </Media>
       </ListGroup.Item>
     );
   }

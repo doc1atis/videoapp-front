@@ -30,6 +30,7 @@ class SearchBar extends Component {
         // put the videos into the state(a reducer)
         this.props.searchVideo(response.data.items);
         e.target.value = "";
+        window.scrollTo(0, 0);
       } catch (error) {
         console.dir(error);
 
@@ -39,24 +40,21 @@ class SearchBar extends Component {
   };
   render() {
     return (
-      <Row>
-        <Col>
-          <FormControl
-            placeholder="search"
-            style={{
-              width: "70vw",
-              minWidth: "220px",
-              maxWidth: "600px"
-            }}
-            className="ml-1"
-            as="input"
-            type="text"
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            onKeyUp={this.handleSubmit}
-          />
-        </Col>
-      </Row>
+      <FormControl
+        placeholder="search"
+        style={{
+          width: "70vw",
+          minWidth: "220px",
+          maxWidth: "600px",
+          marginLeft: "auto",
+          marginRight: "auto"
+        }}
+        as="input"
+        type="text"
+        onChange={this.handleChange}
+        onBlur={this.handleBlur}
+        onKeyUp={this.handleSubmit}
+      />
     );
   }
 }
