@@ -46,23 +46,24 @@ export const randomVideo = () => async dispatch => {
   }
 };
 export const relatedVideos = watchedVidId => {
-  console.log("realted video action creator runs olgy", watchedVidId);
+  // console.log("realted video action creator runs olgy", watchedVidId);
   return async dispatch => {
     try {
-      const response = await Axios.get(
-        "https://www.googleapis.com/youtube/v3/search",
-        {
-          params: {
-            part: "snippet",
-            relatedToVideoId: watchedVidId,
-            type: "video",
-            maxResults: 5,
-            key: process.env.REACT_APP_API_KEY
-          }
-        }
-      );
+      // const response = await Axios.get(
+      //   "https://www.googleapis.com/youtube/v3/search",
+      //   {
+      //     params: {
+      //       part: "snippet",
+      //       relatedToVideoId: watchedVidId,
+      //       type: "video",
+      //       maxResults: 5,
+      //       key: process.env.REACT_APP_API_KEY
+      //     }
+      //   }
+      // );
 
-      dispatch({ type: RELATED_VIDEOS, payload: response.data.items });
+      // dispatch({ type: RELATED_VIDEOS, payload: response.data.items });
+      throw "error";
     } catch (error) {
       console.dir(error);
     }

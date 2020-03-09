@@ -2,24 +2,33 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Comment from "../Comment/Comment";
 import Moment from "react-moment";
+import * as actions from "../../redux/actionCreators";
+import { FaTrash } from "react-icons/fa";
+import AddComment from "../AddComment/AddComment";
+import { Row, Col } from "react-bootstrap";
 
 class Post extends Component {
-  state = {
-    comments: []
-  };
+  componentDidUpdate() {
+    console.log("post cdu");
+    console.log(this.props);
+  }
+
+  componentDidMount() {
+    console.log("post cdm");
+    console.log(this.props);
+  }
 
   render() {
     let comments = <h1>No Comments</h1>;
 
-    console.log(this.props);
-
     let { post } = this.props;
 
-    if (this.state.comments) {
-      comments = this.state.comments.map((comment, i) => (
+    if (post.comments) {
+      comments = post.comments.map((comment, i) => (
         <Comment key={i} comment={comment} />
       ));
     }
+
     return (
       <li className="list-group-item">
         <div className="row">
@@ -40,11 +49,26 @@ class Post extends Component {
                 <a href="#">
                   <Moment format="DD MMM YYYY" date={post.createdAt} />
                 </a>
-                {/* 11 Nov 2013 */}
               </div>
             </div>
-            <div className="comment-text">{post.body}</div>
+            <div className="comment-text">
+              <Row>
+                <Col xs={11}>{post.body}</Col>
+                <Col>
+                  <button
+                    type="button"
+                    className="btn btn-light"
+                    title="Delete"
+                    onClick={() => this.props.deletePost(post._id)}
+                  >
+                    <FaTrash />
+                  </button>
+                </Col>
+              </Row>
+            </div>
             <div className="action">
+              {/* <div onClick={this.showComment}>Reply</div> */}
+              <AddComment postId={post._id} />
               {/* <button
                           type="button"
                           className="btn btn-primary btn-xs"
@@ -59,13 +83,6 @@ class Post extends Component {
                         >
                           <span className="glyphicon glyphicon-ok"></span>
                         </button> */}
-              {/* <button
-                          type="button"
-                          className="btn btn-danger btn-xs"
-                          title="Delete"
-                        >
-                          <span className="glyphicon glyphicon-trash"></span>
-                        </button> */}
             </div>
           </div>
         </div>
@@ -76,6 +93,8 @@ class Post extends Component {
 }
 
 const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  deletePost: id => dispatch(actions.postActions.DeletePost(id))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

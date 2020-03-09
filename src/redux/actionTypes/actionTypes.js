@@ -14,3 +14,7 @@ export const LOGOUT = "LOGOUT";
 // post
 export const CREATE_POST = "CREATE_POST";
 export const GET_POSTS = "GET_POSTS";
+export const DELETE_POST = "DELETE_POST";
+
+// comment
+export const CREATE_COMMENT = "CREATE_COMMENT";

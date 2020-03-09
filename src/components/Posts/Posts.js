@@ -8,13 +8,24 @@ class Posts extends Component {
     show: false
   };
 
+  componentDidMount() {
+    console.log("posts cdm ", this.props.posts);
+  }
+  componentDidUpdate() {
+    console.log("posts cdu ", this.props.posts);
+  }
+
   render() {
     let posts = <div>No Posts</div>;
 
+    console.log("render");
+
     if (this.props.posts) {
       posts = this.props.posts.map((post, i) => {
+        console.log("cur post ", post.comments);
         return <Post key={i} post={post} />;
       });
+      console.log(posts);
     }
 
     return (
@@ -39,7 +50,8 @@ class Posts extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.postReducer.posts
+  posts: state.postReducer.posts,
+  isAuth: state.authReducer.isAuth
 });
 const mapDispatchToProps = dispatch => ({});
 

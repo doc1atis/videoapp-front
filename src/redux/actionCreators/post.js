@@ -1,5 +1,5 @@
 import * as actionTypes from "../actionTypes/actionTypes";
-import { createPost, getPosts } from "../../axios";
+import { createPost, getPosts, deletePost } from "../../axios";
 
 export const CreatePost = data => {
   return async dispatch => {
@@ -26,6 +26,21 @@ export const GetPosts = videoId => {
       dispatch({
         type: actionTypes.GET_POSTS,
         payload: response.data
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const DeletePost = id => {
+  return async dispatch => {
+    try {
+      let response = await deletePost(id);
+
+      dispatch({
+        type: actionTypes.DELETE_POST,
+        payload: response.data.post._id
       });
     } catch (error) {
       console.log(error);

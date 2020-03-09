@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Form, Button } from "react-bootstrap";
-import { createPost } from "../../axios";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actionCreators";
 
@@ -18,6 +17,8 @@ class AddPost extends Component {
       videoId: this.props.currentPlayingLink
     };
 
+    this.setState({ body: "", show: false });
+
     this.props.createPost(payload);
   };
 
@@ -28,9 +29,11 @@ class AddPost extends Component {
       <Form>
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label onClick={() => this.setState({ show: !this.state.show })}>
-            <Button variant={!this.state.show ? "primary" : "secondary"}>
-              Add Comment
-            </Button>
+            {this.props.isAuth && (
+              <Button variant={!this.state.show ? "primary" : "secondary"}>
+                Add Comment
+              </Button>
+            )}
           </Form.Label>
           {this.state.show && (
             <div>
@@ -44,7 +47,7 @@ class AddPost extends Component {
               <br />
               <Button
                 variant="secondary"
-                classNames="mb-2"
+                className="mb-2"
                 onClick={this.handleSubmit}
               >
                 Submit
@@ -58,7 +61,8 @@ class AddPost extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentPlayingLink: state.newVideoReducer.currentPlayingLink.split("v=")[1]
+  currentPlayingLink: state.newVideoReducer.currentPlayingLink.split("v=")[1],
+  isAuth: state.authReducer.isAuth
 });
 
 const mapDispatchToProps = dispatch => ({

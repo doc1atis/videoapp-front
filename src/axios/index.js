@@ -78,3 +78,21 @@ export const getPosts = async videoId => {
     return err.response;
   }
 };
+
+export const deletePost = async id => {
+  try {
+    let response = await Axios.delete(`/api/posts/${id}`);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const createComment = async data => {
+  try {
+    let response = await Axios.post("/api/comments", data);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
