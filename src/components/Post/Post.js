@@ -8,23 +8,22 @@ import AddComment from "../AddComment/AddComment";
 import { Row, Col } from "react-bootstrap";
 
 class Post extends Component {
-  componentDidUpdate() {
-    console.log("post cdu");
-    console.log(this.props);
-  }
-
-  componentDidMount() {
-    console.log("post cdm");
-    console.log(this.props);
-  }
+  // componentDidUpdate() {
+  // this was not being hit when I used the state from redux in parent function and passed it down as props.
+  //   console.log("post cdu");
+  //   console.log(this.props);
+  // }
 
   render() {
     let comments = <h1>No Comments</h1>;
 
     let { post } = this.props;
 
+    // wtf - why did I need to reference the posts from redux to pick up the changes to the comments subdocument. It was updating in redux dev tools but it wasnt updating the list in my ui. !very wierd!
+    let populatedPost = this.props.posts.find(x => x._id == post._id);
+
     if (post.comments) {
-      comments = post.comments.map((comment, i) => (
+      comments = populatedPost.comments.map((comment, i) => (
         <Comment key={i} comment={comment} />
       ));
     }
@@ -67,7 +66,6 @@ class Post extends Component {
               </Row>
             </div>
             <div className="action">
-              {/* <div onClick={this.showComment}>Reply</div> */}
               <AddComment postId={post._id} />
               {/* <button
                           type="button"
@@ -92,7 +90,9 @@ class Post extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  posts: state.postReducer.posts
+});
 const mapDispatchToProps = dispatch => ({
   deletePost: id => dispatch(actions.postActions.DeletePost(id))
 });

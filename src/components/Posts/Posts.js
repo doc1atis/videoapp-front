@@ -18,15 +18,12 @@ class Posts extends Component {
   render() {
     let posts = <div>No Posts</div>;
 
-    console.log("render");
+    // console.log("render");
 
-    if (this.props.posts) {
-      posts = this.props.posts.map((post, i) => {
-        console.log("cur post ", post.comments);
-        return <Post key={i} post={post} />;
-      });
-      console.log(posts);
-    }
+    // if (this.props.posts) {
+    //   posts =
+    //   console.log("array of posts ", posts);
+    // }
 
     return (
       <div className="container mb-5">
@@ -37,7 +34,9 @@ class Posts extends Component {
                 <AddPost />
               </div>
               <h3 className="panel-title ">Recent Comments</h3>
-              {posts}
+              {this.props.posts.map((post, i) => (
+                <Post key={i} post={post} />
+              ))}
             </div>
             <div className="panel-body">
               <ul className="list-group"></ul>
@@ -53,6 +52,7 @@ const mapStateToProps = state => ({
   posts: state.postReducer.posts,
   isAuth: state.authReducer.isAuth
 });
+
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);
