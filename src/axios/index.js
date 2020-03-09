@@ -96,3 +96,12 @@ export const createComment = async data => {
     return err.response;
   }
 };
+
+export const deleteComment = async id => {
+  try {
+    let response = await Axios.delete(`/api/comments/${id}`);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};

@@ -8,23 +8,7 @@ class Posts extends Component {
     show: false
   };
 
-  componentDidMount() {
-    console.log("posts cdm ", this.props.posts);
-  }
-  componentDidUpdate() {
-    console.log("posts cdu ", this.props.posts);
-  }
-
   render() {
-    let posts = <div>No Posts</div>;
-
-    // console.log("render");
-
-    // if (this.props.posts) {
-    //   posts =
-    //   console.log("array of posts ", posts);
-    // }
-
     return (
       <div className="container mb-5">
         <div className="row">
@@ -34,9 +18,11 @@ class Posts extends Component {
                 <AddPost />
               </div>
               <h3 className="panel-title ">Recent Comments</h3>
-              {this.props.posts.map((post, i) => (
-                <Post key={i} post={post} />
-              ))}
+              {this.props.posts ? (
+                this.props.posts.map((post, i) => <Post key={i} post={post} />)
+              ) : (
+                <div>No Posts</div>
+              )}
             </div>
             <div className="panel-body">
               <ul className="list-group"></ul>

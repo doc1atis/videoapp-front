@@ -1,5 +1,5 @@
 import * as actionTypes from "../actionTypes/actionTypes";
-import { createComment } from "../../axios";
+import { createComment, deleteComment } from "../../axios";
 
 export const CreateComment = data => {
   return async dispatch => {
@@ -8,6 +8,21 @@ export const CreateComment = data => {
 
       dispatch({
         type: actionTypes.CREATE_COMMENT,
+        payload: response.data
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const DeleteComment = (id, postId) => {
+  return async dispatch => {
+    try {
+      let response = await deleteComment(id, postId);
+
+      dispatch({
+        type: actionTypes.DELETE_COMMENT,
         payload: response.data
       });
     } catch (error) {

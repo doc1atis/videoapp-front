@@ -7,6 +7,7 @@ import {
 } from "../actionTypes/actionTypes";
 import _ from "lodash";
 import Axios from "axios";
+
 export const newVideo = function(videoLink) {
   return {
     type: NEW_VIDEO,
@@ -46,7 +47,7 @@ export const randomVideo = () => async dispatch => {
   }
 };
 export const relatedVideos = watchedVidId => {
-  // console.log("realted video action creator runs olgy", watchedVidId);
+  // console.log("related video action creator runs olgy", watchedVidId);
   return async dispatch => {
     try {
       // const response = await Axios.get(

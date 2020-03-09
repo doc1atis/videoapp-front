@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import Comment from "../Comment/Comment";
 import Moment from "react-moment";
 import * as actions from "../../redux/actionCreators";
-import { FaTrash } from "react-icons/fa";
+import { FaAlignJustify } from "react-icons/fa";
 import AddComment from "../AddComment/AddComment";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Overlay, Button, ListGroup } from "react-bootstrap";
+import "./Post.css";
 
 class Post extends Component {
   // componentDidUpdate() {
@@ -13,6 +14,11 @@ class Post extends Component {
   //   console.log("post cdu");
   //   console.log(this.props);
   // }
+  state = {
+    show: false
+  };
+
+  target = React.createRef();
 
   render() {
     let comments = <h1>No Comments</h1>;
@@ -31,37 +37,76 @@ class Post extends Component {
     return (
       <li className="list-group-item">
         <div className="row">
-          <div className="col-xs-2 col-md-1">
+          <div className="col-xs-1 col-md-1">
             <img
               src="http://placehold.it/80"
               className="img-circle img-responsive"
               alt=""
             />
           </div>
-          <div className="col-xs-10 col-md-11">
-            <div>
-              {/* <a href="http://bootsnipp.com/BhaumikPatel/snippets/4ldn">
-                          Cool Sign Up
-                        </a> */}
-              <div className="mic-info">
-                By: <a href="#">{post.owner.username}</a> on{" "}
-                <a href="#">
-                  <Moment format="DD MMM YYYY" date={post.createdAt} />
-                </a>
-              </div>
+          <div className="col-xs-8 col-md-10">
+            <div className="mic-info">
+              By: <a href="#">{post.owner.username}</a> on{" "}
+              <a href="#">
+                <Moment format="DD MMM YYYY" date={post.createdAt} />
+              </a>
             </div>
+
             <div className="comment-text">
               <Row>
                 <Col xs={11}>{post.body}</Col>
                 <Col>
-                  <button
+                  <Button
+                    variant="light"
+                    ref={this.target}
+                    onClick={() => this.setState({ show: !this.state.show })}
+                  >
+                    <FaAlignJustify />
+                  </Button>
+                  <Overlay
+                    target={this.target.current}
+                    show={this.state.show}
+                    placement="bottom"
+                  >
+                    {({
+                      placement,
+                      scheduleUpdate,
+                      arrowProps,
+                      outOfBoundaries,
+                      show: _show,
+                      ...props
+                    }) => (
+                      <div
+                        {...props}
+                        // style={{
+                        //   padding: "2px 10px",
+
+                        //   borderRadius: 3,
+                        //   ...props.style
+                        // }}
+                      >
+                        <ListGroup>
+                          {/* <button
                     type="button"
                     className="btn btn-light"
                     title="Delete"
                     onClick={() => this.props.deletePost(post._id)}
                   >
                     <FaTrash />
-                  </button>
+                  </button> */}
+                          <ListGroup.Item>
+                            <div
+                              className="cursorP"
+                              onClick={() => this.props.deletePost(post._id)}
+                            >
+                              Delete
+                            </div>
+                          </ListGroup.Item>
+                          {/* <ListGroup.Item>Edit</ListGroup.Item> */}
+                        </ListGroup>
+                      </div>
+                    )}
+                  </Overlay>
                 </Col>
               </Row>
             </div>

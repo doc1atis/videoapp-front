@@ -27,11 +27,24 @@ export default function(state = initialState, action) {
         ...stateCopy.posts[postIndex].comments,
         action.payload
       ];
-      console.log(posts);
 
       return {
         ...state,
-        posts: posts
+        posts
+      };
+
+    case actionTypes.DELETE_COMMENT:
+      let postIndex2 = state.posts.findIndex(x => x._id == action.payload.post);
+      let stateCopy2 = { ...state };
+      let posts2 = [...stateCopy2.posts];
+
+      posts2[postIndex2].comments = stateCopy2.posts[
+        postIndex2
+      ].comments.filter(x => x._id !== action.payload._id);
+
+      return {
+        ...state,
+        posts: posts2
       };
 
     default:
