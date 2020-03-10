@@ -8,10 +8,10 @@ import {
 import _ from "lodash";
 import Axios from "axios";
 
-export const newVideo = function(videoLink) {
+export const newVideo = function(video) {
   return {
     type: NEW_VIDEO,
-    payload: videoLink
+    payload: video
   };
 };
 

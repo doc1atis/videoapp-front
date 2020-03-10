@@ -11,7 +11,10 @@ class RecommendedItem extends Component {
   playVideo = () => {
     this.props.searchVideo([]); // no request is sent
     this.props.relatedVideos(this.props.videoId); // request  is sent
-    this.props.newVideo(this.props.videoLink); // no request is sent
+    this.props.newVideo({
+      id: this.props.videoId,
+      snippet: { title: this.props.videoTitle }
+    }); // no request is sent
     window.scrollTo(0, 0); // force the widow to scroll up
   };
   render() {

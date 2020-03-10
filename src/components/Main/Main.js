@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Accordion, Card } from "react-bootstrap";
+import { FaCaretDown } from "react-icons/fa";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Recommendation from "../Recommendation/Recommendation";
-export default class Header extends Component {
+import { connect } from "react-redux";
+class Header extends Component {
   render() {
     return (
       <header className="masthead text-center text-white">
@@ -22,21 +24,47 @@ export default class Header extends Component {
                 </Row>
                 <Row>
                   <Col xl={12}>
-                    <Accordion defaultActiveKey="0">
+                    <Accordion defaultActiveKey="0" className="mb-3">
                       <Card>
-                        <Card.Header>
-                          <Accordion.Toggle
-                            as={"p"}
-                            variant="link"
-                            eventKey="1"
-                            style={{ color: "black" }}
+                        <Card.Header style={{ backgroundColor: "#221E20" }}>
+                          <Row
+                            style={{
+                              backgroundColor: "#E9ECEF",
+                              paddingRight: "1rem"
+                            }}
                           >
-                            Info
-                          </Accordion.Toggle>
+                            <Col xs={{ span: 10, offset: 0 }}>
+                              <p
+                                style={{
+                                  color: "black",
+                                  fontSize: "1.2rem",
+                                  textTransform: "capitalize"
+                                }}
+                              >
+                                {this.props.video.id
+                                  ? this.props.video.snippet.title
+                                  : null}
+                              </p>
+                            </Col>
+                            <Col xs={{ span: 1, offset: 1 }}>
+                              <Accordion.Toggle
+                                as={FaCaretDown}
+                                variant="link"
+                                eventKey="1"
+                                style={{
+                                  color: "#221E20",
+                                  cursor: "pointer",
+                                  fontSize: "2.5rem"
+                                }}
+                              ></Accordion.Toggle>
+                            </Col>
+                          </Row>
                         </Card.Header>
                         <Accordion.Collapse eventKey="1">
                           <Card.Body>
-                            <p style={{ color: "black" }}>my video body</p>
+                            <p style={{ color: "black" }}>
+                              my video description
+                            </p>
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
@@ -67,3 +95,14 @@ export default class Header extends Component {
     );
   }
 }
+const mapStateToProps = entireState => {
+  let { video } = entireState.newVideoReducer;
+  if (!video) {
+    video = entireState.randomVideoReducer.video;
+  }
+  console.log("olgy video1  is: ", entireState.newVideoReducer);
+  console.log("olgy video2  is: ", entireState.randomVideoReducer.video);
+
+  return { video };
+};
+export default connect(mapStateToProps, {})(Header);
