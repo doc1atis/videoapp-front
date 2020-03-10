@@ -37,7 +37,12 @@ class Header extends Component {
                               <p
                                 style={{
                                   color: "black",
-                                  fontSize: "1.2rem",
+                                  paddingTop: "0.5rem",
+                                  fontSize: "1rem",
+                                  overflow: "hidden",
+                                  display: "-webkit-box",
+                                  WebkitLineClamp: "1",
+                                  WebkitBoxOrient: "vertical",
                                   textTransform: "capitalize"
                                 }}
                               >
