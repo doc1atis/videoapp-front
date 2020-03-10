@@ -21,12 +21,13 @@ class SearchBar extends Component {
           {
             params: {
               part: "snippet",
-              maxResults: 5,
+              maxResults: 6,
               q: e.target.value,
               key: process.env.REACT_APP_API_KEY
             }
           }
         );
+
         // put the videos into the state(a reducer)
         this.props.searchVideo(response.data.items);
         e.target.value = "";

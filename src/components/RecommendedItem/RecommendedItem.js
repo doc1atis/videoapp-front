@@ -66,9 +66,7 @@ class RecommendedItem extends Component {
     );
   }
 }
-// const mapStateToProps = entireState => {
-//   return {};
-// };
+
 export default connect(null, { newVideo, relatedVideos, searchVideo })(
   RecommendedItem
 );
