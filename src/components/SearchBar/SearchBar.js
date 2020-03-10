@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { searchVideo } from "../../redux/actionCreators/video";
 class SearchBar extends Component {
   handleChange = e => {
-    // console.dir(e.target);
     const input = e.target;
     input.value = e.target.value;
   };
@@ -13,10 +12,10 @@ class SearchBar extends Component {
     e.target.value = "";
   };
   handleSubmit = async e => {
-    if (e.keyCode === 13) {
-      e.persist();
-
+    e.persist();
+    if (e.keyCode === 13 && e.target.value) {
       try {
+        //   search for videos
         const response = await Axios.get(
           "https://www.googleapis.com/youtube/v3/search",
           {
@@ -28,9 +27,10 @@ class SearchBar extends Component {
             }
           }
         );
-
+        // put the videos into the state(a reducer)
         this.props.searchVideo(response.data.items);
         e.target.value = "";
+        window.scrollTo(0, 0);
       } catch (error) {
         console.dir(error);
 
@@ -40,25 +40,23 @@ class SearchBar extends Component {
   };
   render() {
     return (
-      <Row>
-        <Col>
-          <FormControl
-            placeholder="search"
-            style={{
-              width: "70vw",
-              minWidth: "220px",
-              maxWidth: "600px"
-            }}
-            className="ml-1"
-            as="input"
-            type="text"
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            onKeyUp={this.handleSubmit}
-          />
-        </Col>
-      </Row>
+      <FormControl
+        placeholder="search"
+        style={{
+          width: "70vw",
+          minWidth: "220px",
+          maxWidth: "600px",
+          marginLeft: "auto",
+          marginRight: "auto"
+        }}
+        as="input"
+        type="text"
+        onChange={this.handleChange}
+        onBlur={this.handleBlur}
+        onKeyUp={this.handleSubmit}
+      />
     );
   }
 }
+
 export default connect(null, { searchVideo })(SearchBar);

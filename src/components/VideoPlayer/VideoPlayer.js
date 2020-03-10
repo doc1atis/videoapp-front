@@ -15,10 +15,12 @@ class VideoPlayer extends Component {
           <ReactPlayer
             url={this.props.currentPlayingLink}
             controls
+            playsinline
             width="100%"
             height="100%"
             pip
             playing={this.props.playVideo}
+            className="embed-responsive-item"
             config={{
               youtube: {
                 playerVars: {
@@ -46,12 +48,12 @@ class VideoPlayer extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  let { currentPlayingLink, playVideo } = state.newVideoReducer;
-  if (!currentPlayingLink) {
-    currentPlayingLink = `https://www.youtube.com/watch?v=${state.randomVideoReducer.video.id}`;
+const mapStateToProps = entireState => {
+  let { videoLink, playVideo } = entireState.newVideoReducer;
+  if (!videoLink) {
+    videoLink = `https://www.youtube.com/watch?v=${entireState.randomVideoReducer.video.id}`;
   }
 
-  return { currentPlayingLink, playVideo };
+  return { videoLink, playVideo };
 };
 export default connect(mapStateToProps, {})(VideoPlayer);

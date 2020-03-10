@@ -32,7 +32,7 @@ export const randomVideo = () => async dispatch => {
           part: "snippet",
           chart: "mostPopular",
           regionCode: "US",
-          maxResults: 5,
+          maxResults: 50,
           key: process.env.REACT_APP_API_KEY
         }
       }
@@ -40,31 +40,29 @@ export const randomVideo = () => async dispatch => {
 
     dispatch({
       type: RANDOM_VIDEO,
-      payload: response.data.items[_.random(0, 4)]
+      payload: response.data.items[_.random(0, 49)]
     });
   } catch (error) {
     console.dir(error);
   }
 };
-export const relatedVideos = watchedVidId => {
-  // console.log("related video action creator runs olgy", watchedVidId);
+export const relatedVideos = videoId => {
   return async dispatch => {
     try {
-      // const response = await Axios.get(
-      //   "https://www.googleapis.com/youtube/v3/search",
-      //   {
-      //     params: {
-      //       part: "snippet",
-      //       relatedToVideoId: watchedVidId,
-      //       type: "video",
-      //       maxResults: 5,
-      //       key: process.env.REACT_APP_API_KEY
-      //     }
-      //   }
-      // );
+      const response = await Axios.get(
+        "https://www.googleapis.com/youtube/v3/search",
+        {
+          params: {
+            part: "snippet",
+            relatedToVideoId: videoId,
+            type: "video",
+            maxResults: 5,
+            key: process.env.REACT_APP_API_KEY
+          }
+        }
+      );
 
-      // dispatch({ type: RELATED_VIDEOS, payload: response.data.items });
-      throw "error";
+      dispatch({ type: RELATED_VIDEOS, payload: response.data.items });
     } catch (error) {
       console.dir(error);
     }
