@@ -8,7 +8,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case NEW_VIDEO:
-      return { ...state, currentPlayingLink: action.payload, playVideo: true };
+      return { ...state, videoLink: action.payload, playVideo: true };
 
     default:
       return state;

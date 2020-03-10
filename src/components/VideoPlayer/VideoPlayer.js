@@ -9,11 +9,11 @@ class VideoPlayer extends Component {
   render() {
     let display = <Spinner />;
 
-    if (this.props.currentPlayingLink) {
+    if (this.props.videoLink) {
       display = (
         <ResponsiveEmbed aspectRatio="16by9">
           <ReactPlayer
-            url={this.props.currentPlayingLink}
+            url={this.props.videoLink}
             controls
             playsinline
             width="100%"

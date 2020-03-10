@@ -14,7 +14,7 @@ class AddPost extends Component {
 
     let payload = {
       body: this.state.body,
-      videoId: this.props.currentPlayingLink
+      videoId: this.props.videoLink
     };
 
     this.setState({ body: "", show: false });
@@ -60,10 +60,16 @@ class AddPost extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentPlayingLink: state.newVideoReducer.currentPlayingLink.split("v=")[1],
-  isAuth: state.authReducer.isAuth
-});
+const mapStateToProps = state => {
+  let { videoLink } = state.newVideoReducer;
+  if (!videoLink) {
+    videoLink = `https://www.youtube.com/watch?v=${state.randomVideoReducer.video.id}`;
+  }
+  return {
+    videoLink: videoLink.split("v=")[1],
+    isAuth: state.authReducer.isAuth
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   createPost: data => dispatch(actions.postActions.CreatePost(data))
