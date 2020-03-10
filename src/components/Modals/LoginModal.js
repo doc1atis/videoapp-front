@@ -2,6 +2,7 @@ import { Button, Modal, Form } from "react-bootstrap";
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actionCreators";
+import { checkTokenAndReturn, setAuthHeader } from "../../axios/";
 
 class LoginModal extends React.Component {
   state = {
@@ -12,6 +13,7 @@ class LoginModal extends React.Component {
 
   logout = () => {
     localStorage.removeItem("token");
+    setAuthHeader(null);
     this.props.logout();
   };
 
@@ -30,6 +32,7 @@ class LoginModal extends React.Component {
     };
     try {
       await this.props.login(form);
+      checkTokenAndReturn();
     } catch (error) {
       console.log({ error });
     }

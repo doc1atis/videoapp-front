@@ -7,12 +7,14 @@ import {
 } from "../actionTypes/actionTypes";
 import _ from "lodash";
 import Axios from "axios";
+
 export const newVideo = function(videoLink) {
   return {
     type: NEW_VIDEO,
     payload: videoLink
   };
 };
+
 export const showFirstVideo = function(videoLink) {
   return { type: SHOW_FIRST_VIDEO, payload: videoLink };
 };
@@ -20,7 +22,8 @@ export const showFirstVideo = function(videoLink) {
 export const searchVideo = function(videos) {
   return { type: SEARCH_VIDEO, payload: videos };
 };
-export const randomVideo = () => async (dispatch, getState) => {
+
+export const randomVideo = () => async dispatch => {
   try {
     const response = await Axios.get(
       "https://www.googleapis.com/youtube/v3/videos",

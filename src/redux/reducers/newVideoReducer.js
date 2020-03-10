@@ -1,11 +1,10 @@
 import { NEW_VIDEO } from "../actionTypes/actionTypes";
 
-// let data = await getMostPopularVideos();
-// `https://www.youtube.com/watch?v=EAezax2ugQU`
 const initialState = {
   videoLink: null,
   playVideo: false
 };
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case NEW_VIDEO:

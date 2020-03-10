@@ -2,8 +2,9 @@ import { Button, Modal, Form } from "react-bootstrap";
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actionCreators";
+import { checkTokenAndReturn } from "../../axios/";
 
-class UIModal extends React.Component {
+class RegisterModal extends React.Component {
   state = {
     show: false,
     username: "",
@@ -18,10 +19,6 @@ class UIModal extends React.Component {
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value });
 
-  componentDidUpdate() {
-    console.log(this.props);
-  }
-
   handleSubmit = async e => {
     e.preventDefault();
     if (this.state.password !== this.state.confirmPassword) {
@@ -35,6 +32,7 @@ class UIModal extends React.Component {
     };
     try {
       await this.props.register(form);
+      checkTokenAndReturn();
     } catch (error) {
       console.log({ error });
     }
@@ -119,14 +117,12 @@ class UIModal extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isAuth: state.authReducer.isAuth
-  };
-};
+const mapStateToProps = state => ({
+  isAuth: state.authReducer.isAuth
+});
 
 const mapDispatchToProps = dispatch => ({
   register: data => dispatch(actions.authActions.Register(data))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UIModal);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterModal);

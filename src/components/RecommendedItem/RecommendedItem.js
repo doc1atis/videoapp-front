@@ -66,8 +66,10 @@ class RecommendedItem extends Component {
     );
   }
 }
-// const mapStateToProps = entireState => {
-//   return {};
+// const mapStateToProps = state => {
+//   return {
+//     videoLink: state.newVideoReducer.videoLink
+//   };
 // };
 export default connect(null, { newVideo, relatedVideos, searchVideo })(
   RecommendedItem
