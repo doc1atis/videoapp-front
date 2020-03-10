@@ -54,7 +54,8 @@ class RecommendedItem extends Component {
                 overflow: "hidden",
                 display: "-webkit-box",
                 WebkitLineClamp: "2",
-                WebkitBoxOrient: "vertical"
+                WebkitBoxOrient: "vertical",
+                textTransform: "capitalize"
               }}
             >
               {this.props.videoTitle}
