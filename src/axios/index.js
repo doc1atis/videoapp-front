@@ -33,6 +33,7 @@ export const register = async data => {
     return err.response;
   }
 };
+
 export const login = async data => {
   try {
     let res = await Axios.post("/api/users/login", data);
@@ -54,6 +55,69 @@ export const getUser = async () => {
 export const deleteUser = async id => {
   try {
     let response = await Axios.delete("/api/users");
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const createPost = async data => {
+  try {
+    let response = await Axios.post("/api/posts", data);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const getPosts = async videoId => {
+  try {
+    let response = await Axios.get(`/api/posts/${videoId}`);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const deletePost = async id => {
+  try {
+    let response = await Axios.delete(`/api/posts/${id}`);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const likePost = async id => {
+  try {
+    let response = await Axios.post(`/api/posts/like/${id}`);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const dislikePost = async id => {
+  try {
+    let response = await Axios.post(`/api/posts/dislike/${id}`);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const createComment = async data => {
+  try {
+    let response = await Axios.post("/api/comments", data);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const deleteComment = async id => {
+  try {
+    let response = await Axios.delete(`/api/comments/${id}`);
     return response;
   } catch (err) {
     return err.response;

@@ -66,7 +66,6 @@ class RecommendedItem extends Component {
     );
   }
 }
-
 export default connect(null, { newVideo, relatedVideos, searchVideo })(
   RecommendedItem
 );

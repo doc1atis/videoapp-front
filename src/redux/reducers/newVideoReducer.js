@@ -3,6 +3,7 @@ const initialState = {
   videoLink: null,
   playVideo: false
 };
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case NEW_VIDEO:
