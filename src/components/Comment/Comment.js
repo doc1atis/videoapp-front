@@ -73,10 +73,7 @@ class Comment extends Component {
                           <div
                             className="cursorP"
                             onClick={() =>
-                              this.props.deleteComment(
-                                comment._id,
-                                comment.post
-                              )
+                              this.props.deleteComment(comment._id)
                             }
                           >
                             Delete

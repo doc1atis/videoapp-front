@@ -88,6 +88,24 @@ export const deletePost = async id => {
   }
 };
 
+export const likePost = async id => {
+  try {
+    let response = await Axios.post(`/api/posts/like/${id}`);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
+export const dislikePost = async id => {
+  try {
+    let response = await Axios.post(`/api/posts/dislike/${id}`);
+    return response;
+  } catch (err) {
+    return err.response;
+  }
+};
+
 export const createComment = async data => {
   try {
     let response = await Axios.post("/api/comments", data);

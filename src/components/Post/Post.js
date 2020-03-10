@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Comment from "../Comment/Comment";
 import Moment from "react-moment";
 import * as actions from "../../redux/actionCreators";
-import { FaAlignJustify } from "react-icons/fa";
+import { FaAlignJustify, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import AddComment from "../AddComment/AddComment";
 import { Row, Col, Overlay, Button, ListGroup } from "react-bootstrap";
 import "./Post.css";
@@ -19,6 +19,16 @@ class Post extends Component {
   };
 
   target = React.createRef();
+
+  likePost = async (e, id) => {
+    e.preventDefault();
+    await this.props.likePost(id);
+  };
+
+  dislikePost = async (e, id) => {
+    e.preventDefault();
+    await this.props.dislikePost(id);
+  };
 
   render() {
     let comments = <h1>No Comments</h1>;
@@ -49,6 +59,18 @@ class Post extends Component {
               By: <a href="#">{post.owner.username}</a> on{" "}
               <a href="#">
                 <Moment format="DD MMM YYYY" date={post.createdAt} />
+                <Button
+                  variant="light"
+                  onClick={e => this.likePost(e, post._id)}
+                >
+                  <FaThumbsUp /> {post.likes.length}
+                </Button>
+                <Button
+                  variant="light"
+                  onClick={e => this.dislikePost(e, post._id)}
+                >
+                  <FaThumbsDown /> {post.dislikes.length}
+                </Button>
               </a>
             </div>
 
@@ -86,14 +108,6 @@ class Post extends Component {
                         // }}
                       >
                         <ListGroup>
-                          {/* <button
-                    type="button"
-                    className="btn btn-light"
-                    title="Delete"
-                    onClick={() => this.props.deletePost(post._id)}
-                  >
-                    <FaTrash />
-                  </button> */}
                           <ListGroup.Item>
                             <div
                               className="cursorP"
@@ -138,8 +152,11 @@ class Post extends Component {
 const mapStateToProps = state => ({
   posts: state.postReducer.posts
 });
+
 const mapDispatchToProps = dispatch => ({
-  deletePost: id => dispatch(actions.postActions.DeletePost(id))
+  deletePost: id => dispatch(actions.postActions.DeletePost(id)),
+  likePost: id => dispatch(actions.postActions.LikePost(id)),
+  dislikePost: id => dispatch(actions.postActions.DislikePost(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
