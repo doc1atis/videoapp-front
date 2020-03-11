@@ -73,7 +73,7 @@ export const DislikePost = id => {
       let response = await dislikePost(id);
 
       dispatch({
-        type: actionTypes.LIKE_POST,
+        type: actionTypes.DISLIKE_POST,
         payload: response.data
       });
     } catch (error) {

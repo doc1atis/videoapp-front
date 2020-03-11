@@ -12,10 +12,12 @@ class App extends Component {
     if (user) {
       this.props.getUser();
     }
-    this.props.randomVideo();
-    // get id from user likedVideos
-    this.props.relatedVideos("EAezax2ugQU");
-    await this.props.getPosts("EAezax2ugQU");
+    // todo -> get id from user likedVideos
+    await this.props.randomVideo();
+    if (this.props.video.id) {
+      this.props.relatedVideos(this.props.video.id);
+      this.props.getPosts(this.props.video.id);
+    }
   }
 
   render() {
@@ -29,6 +31,10 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  video: state.randomVideoReducer.video
+});
+
 const mapDispatchToProps = dispatch => ({
   getUser: () => dispatch(actions.authActions.GetUser()),
   randomVideo: () => dispatch(randomVideo()),
@@ -36,4 +42,4 @@ const mapDispatchToProps = dispatch => ({
   getPosts: videoId => dispatch(actions.postActions.GetPosts(videoId))
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
