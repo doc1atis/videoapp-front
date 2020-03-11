@@ -4,6 +4,7 @@ import "./VideoPlayer.css";
 import ReactPlayer from "react-player";
 import Spinner from "../Spinner/Spinner";
 import { connect } from "react-redux";
+import * as actions from "../../redux/actionCreators";
 
 class VideoPlayer extends Component {
   render() {
@@ -33,6 +34,8 @@ class VideoPlayer extends Component {
           />
         </ResponsiveEmbed>
       );
+
+      this.props.getPosts(this.props.video.id);
     }
     return (
       <Card
@@ -48,12 +51,19 @@ class VideoPlayer extends Component {
     );
   }
 }
+
 const mapStateToProps = entireState => {
   let { video, playVideo } = entireState.newVideoReducer;
   if (!video) {
     video = entireState.randomVideoReducer.video;
+
   }
 
   return { video, playVideo };
 };
-export default connect(mapStateToProps, {})(VideoPlayer);
+
+const mapDispatchToProps = dispatch => ({
+  getPosts: videoId => dispatch(actions.postActions.GetPosts(videoId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(VideoPlayer);

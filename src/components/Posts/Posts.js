@@ -19,10 +19,11 @@ class Posts extends Component {
                 <AddPost />
               </div>
               <h3 className="panel-title ">Recent Comments</h3>
-              {this.props.posts ? (
+
+              {this.props.posts.length ? (
                 this.props.posts.map((post, i) => <Post key={i} post={post} />)
               ) : (
-                <div>No Posts</div>
+                <div>-- No Comments --</div>
               )}
             </div>
             <div className="panel-body">
@@ -40,6 +41,6 @@ const mapStateToProps = state => ({
   isAuth: state.authReducer.isAuth
 });
 
-const mapDispatchToProps = dispatch => ({});
+// const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default connect(mapStateToProps)(Posts);
