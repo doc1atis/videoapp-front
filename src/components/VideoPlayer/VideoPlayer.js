@@ -10,11 +10,11 @@ class VideoPlayer extends Component {
   render() {
     let display = <Spinner />;
 
-    if (this.props.videoLink) {
+    if (this.props.video) {
       display = (
         <ResponsiveEmbed aspectRatio="16by9">
           <ReactPlayer
-            url={this.props.videoLink}
+            url={`https://www.youtube.com/watch?v=${this.props.video.id}`}
             controls
             playsinline
             width="100%"
@@ -35,7 +35,7 @@ class VideoPlayer extends Component {
         </ResponsiveEmbed>
       );
 
-      this.props.getPosts(this.props.videoLink.split("=")[1]);
+      this.props.getPosts(this.props.video.id);
     }
     return (
       <Card
@@ -52,14 +52,14 @@ class VideoPlayer extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  let { videoLink, playVideo } = state.newVideoReducer;
-  let { video } = state.randomVideoReducer;
-  if (!videoLink) {
-    videoLink = `https://www.youtube.com/watch?v=${video.id}`;
+const mapStateToProps = entireState => {
+  let { video, playVideo } = entireState.newVideoReducer;
+  if (!video) {
+    video = entireState.randomVideoReducer.video;
+
   }
 
-  return { videoLink, playVideo };
+  return { video, playVideo };
 };
 
 const mapDispatchToProps = dispatch => ({

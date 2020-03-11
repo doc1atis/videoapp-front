@@ -8,10 +8,10 @@ import {
 import _ from "lodash";
 import Axios from "axios";
 
-export const newVideo = function(videoLink) {
+export const newVideo = function(video) {
   return {
     type: NEW_VIDEO,
-    payload: videoLink
+    payload: video
   };
 };
 
@@ -56,7 +56,7 @@ export const relatedVideos = videoId => {
             part: "snippet",
             relatedToVideoId: videoId,
             type: "video",
-            maxResults: 5,
+            maxResults: 7,
             key: process.env.REACT_APP_API_KEY
           }
         }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Accordion, Card } from "react-bootstrap";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Recommendation from "../Recommendation/Recommendation";
 export default class Header extends Component {
@@ -15,7 +15,34 @@ export default class Header extends Component {
                 lg={12}
                 xl={{ span: 7, offset: 0 }}
               >
-                <VideoPlayer />
+                <Row>
+                  <Col>
+                    <VideoPlayer />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xl={12}>
+                    <Accordion defaultActiveKey="0">
+                      <Card>
+                        <Card.Header>
+                          <Accordion.Toggle
+                            as={"p"}
+                            variant="link"
+                            eventKey="1"
+                            style={{ color: "black" }}
+                          >
+                            Info
+                          </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="1">
+                          <Card.Body>
+                            <p style={{ color: "black" }}>my video body</p>
+                          </Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
+                    </Accordion>
+                  </Col>
+                </Row>
               </Col>
 
               <Col sm={12} md={12} lg={12} xl={{ span: 4, offset: -1 }}>
