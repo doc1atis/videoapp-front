@@ -56,7 +56,7 @@ export const relatedVideos = videoId => {
             part: "snippet",
             relatedToVideoId: videoId,
             type: "video",
-            maxResults: 5,
+            maxResults: 2,
             key: process.env.REACT_APP_API_KEY
           }
         }

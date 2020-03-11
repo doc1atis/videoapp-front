@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
-import { FaTrash, FaAlignJustify } from "react-icons/fa";
+import {
+  FaTrash,
+  FaAlignJustify,
+  FaThumbsUp,
+  FaThumbsDown
+} from "react-icons/fa";
 import { Row, Col, Overlay, Button, ListGroup } from "react-bootstrap";
 import * as actions from "../../redux/actionCreators";
 import { connect } from "react-redux";
@@ -8,6 +13,16 @@ import { connect } from "react-redux";
 class Comment extends Component {
   state = {
     show: false
+  };
+
+  likeComment = async (e, id) => {
+    e.preventDefault();
+    await this.props.likeComment(id);
+  };
+
+  dislikeComment = async (e, id) => {
+    e.preventDefault();
+    await this.props.dislikeComment(id);
   };
 
   target = React.createRef();
@@ -32,6 +47,18 @@ class Comment extends Component {
               By: <a href="#">{comment.owner.username}</a> on{" "}
               <a href="#">
                 <Moment format="DD MMM YYYY" date={comment.createdAt} />
+                <Button
+                  variant="light"
+                  onClick={e => this.likeComment(e, comment._id)}
+                >
+                  <FaThumbsUp /> {comment.likes.length}
+                </Button>
+                <Button
+                  variant="light"
+                  onClick={e => this.dislikeComment(e, comment._id)}
+                >
+                  <FaThumbsDown /> {comment.dislikes.length}
+                </Button>
               </a>
             </div>
           </div>
@@ -119,7 +146,9 @@ class Comment extends Component {
 const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   deleteComment: (id, postId) =>
-    dispatch(actions.commentActions.DeleteComment(id, postId))
+    dispatch(actions.commentActions.DeleteComment(id, postId)),
+  likeComment: id => dispatch(actions.commentActions.LikeComment(id)),
+  dislikeComment: id => dispatch(actions.commentActions.DislikeComment(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comment);

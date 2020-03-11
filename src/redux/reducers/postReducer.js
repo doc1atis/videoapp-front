@@ -47,6 +47,40 @@ export default function(state = initialState, action) {
         posts: posts2
       };
 
+    case actionTypes.LIKE_COMMENT:
+      let postIndex5 = state.posts.findIndex(x => x._id == action.payload.post);
+
+      let stateCopy5 = { ...state };
+      let posts5 = [...stateCopy5.posts];
+
+      let commentIdx = posts5[postIndex5].comments.findIndex(
+        x => x._id == action.payload._id
+      );
+
+      posts5[postIndex5].comments[commentIdx] = action.payload;
+
+      return {
+        ...state,
+        posts: posts5
+      };
+
+    case actionTypes.DISLIKE_COMMENT:
+      let postIndex6 = state.posts.findIndex(x => x._id == action.payload.post);
+
+      let stateCopy6 = { ...state };
+      let posts6 = [...stateCopy6.posts];
+
+      let commentIdx2 = posts6[postIndex6].comments.findIndex(
+        x => x._id == action.payload._id
+      );
+
+      posts6[postIndex6].comments[commentIdx2] = action.payload;
+
+      return {
+        ...state,
+        posts: posts6
+      };
+
     case actionTypes.LIKE_POST:
       let postIndex3 = state.posts.findIndex(x => x._id == action.payload._id);
 
@@ -72,6 +106,19 @@ export default function(state = initialState, action) {
         ...state,
         posts: posts4
       };
+
+    // case actionTypes.DISLIKE_POST:
+    //   let postIndex4 = state.posts.findIndex(x => x._id == action.payload._id);
+
+    //   let stateCopy4 = { ...state };
+    //   let posts4 = [...stateCopy4.posts];
+
+    //   posts4[postIndex4] = action.payload;
+
+    //   return {
+    //     ...state,
+    //     posts: posts4
+    //   };
 
     default:
       return state;

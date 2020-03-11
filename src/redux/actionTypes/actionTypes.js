@@ -21,3 +21,5 @@ export const DISLIKE_POST = "DISLIKE_POST";
 // comment
 export const CREATE_COMMENT = "CREATE_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
+export const LIKE_COMMENT = "LIKE_COMMENT";
+export const DISLIKE_COMMENT = "DISLIKE_COMMENT";
