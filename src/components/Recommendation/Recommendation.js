@@ -9,7 +9,7 @@ class Recommendation extends Component {
       <Card style={{ padding: "0.5rem", backgroundColor: "#221E20" }}>
         {this.props.videos.map(video => {
           const { snippet, id } = video;
-          const { title, thumbnails } = snippet;
+          const { title, thumbnails, description, publishedAt } = snippet;
           const { videoId } = id;
           return (
             <RecommendedItem
@@ -20,6 +20,8 @@ class Recommendation extends Component {
               thumbHeight={thumbnails.high.height}
               thumbWidth={thumbnails.high.width}
               videoId={videoId}
+              videoDescription={description}
+              publishedAt={publishedAt}
               key={videoId + uuid()}
             />
           );

@@ -13,7 +13,11 @@ class RecommendedItem extends Component {
     this.props.relatedVideos(this.props.videoId); // request  is sent
     this.props.newVideo({
       id: this.props.videoId,
-      snippet: { title: this.props.videoTitle }
+      snippet: {
+        title: this.props.videoTitle,
+        description: this.props.videoDescription,
+        publishedAt: this.props.publishedAt
+      }
     }); // no request is sent
     window.scrollTo(0, 0); // force the widow to scroll up
   };
