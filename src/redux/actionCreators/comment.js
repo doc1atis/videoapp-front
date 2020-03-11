@@ -65,5 +65,3 @@ export const DislikeComment = id => {
     }
   };
 };
-
-// request header not set on login

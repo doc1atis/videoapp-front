@@ -107,19 +107,6 @@ export default function(state = initialState, action) {
         posts: posts4
       };
 
-    // case actionTypes.DISLIKE_POST:
-    //   let postIndex4 = state.posts.findIndex(x => x._id == action.payload._id);
-
-    //   let stateCopy4 = { ...state };
-    //   let posts4 = [...stateCopy4.posts];
-
-    //   posts4[postIndex4] = action.payload;
-
-    //   return {
-    //     ...state,
-    //     posts: posts4
-    //   };
-
     default:
       return state;
   }
