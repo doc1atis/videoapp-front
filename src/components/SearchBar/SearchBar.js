@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, FormControl } from "react-bootstrap";
+import { FormControl } from "react-bootstrap";
 import Axios from "axios";
 import { connect } from "react-redux";
 import { searchVideo } from "../../redux/actionCreators/video";
@@ -21,8 +21,6 @@ class SearchBar extends Component {
           {
             params: {
               part: "snippet",
-
-             
 
               maxResults: 7,
 

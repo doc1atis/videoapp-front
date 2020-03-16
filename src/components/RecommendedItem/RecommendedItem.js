@@ -21,6 +21,7 @@ class RecommendedItem extends Component {
     }); // no request is sent
     window.scrollTo(0, 0); // force the widow to scroll up
   };
+
   render() {
     return (
       <ListGroup.Item
@@ -43,12 +44,28 @@ class RecommendedItem extends Component {
               /> */}
               <ReactPlayer
                 url={this.props.videoLink}
+                playIcon={<></>}
                 height="100%"
                 width="100%"
                 light
                 onClick={this.playVideo}
                 playing={false}
                 className="embed-responsive-item"
+                config={{
+                  youtube: {
+                    playerVars: {
+                      modestbranding: 1,
+                      fs: 0,
+                      origin: "http://localhost:3000",
+                      showinfo: 0,
+                      enablejsapi: 1,
+                      autohide: 1,
+                      autoplay: 0,
+                      iv_load_policy: 3,
+                      widget_referrer: "http://localhost:3000"
+                    }
+                  }
+                }}
               />
             </ResponsiveEmbed>
           </div>
@@ -62,7 +79,9 @@ class RecommendedItem extends Component {
                 display: "-webkit-box",
                 WebkitLineClamp: "2",
                 WebkitBoxOrient: "vertical",
-                textTransform: "capitalize"
+                textTransform: "capitalize",
+                textAlign: "left",
+                paddingLeft: "0.5rem"
               }}
             >
               {this.props.videoTitle}

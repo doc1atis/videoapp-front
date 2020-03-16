@@ -9,7 +9,6 @@ class Posts extends Component {
   };
 
   render() {
-    console.log(this.props.posts);
     return (
       <div className="container mb-5">
         <div className="row">
@@ -41,6 +40,4 @@ const mapStateToProps = state => ({
   isAuth: state.authReducer.isAuth
 });
 
-// const mapDispatchToProps = dispatch => ({});
-
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps, {})(Posts);
