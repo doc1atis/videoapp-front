@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
-import {
-  FaTrash,
-  FaAlignJustify,
-  FaThumbsUp,
-  FaThumbsDown
-} from "react-icons/fa";
+import { FaAlignJustify, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { Row, Col, Overlay, Button, ListGroup } from "react-bootstrap";
 import * as actions from "../../redux/actionCreators";
 import { connect } from "react-redux";
-
+import { Link } from "react-router-dom";
 class Comment extends Component {
   state = {
     show: false
@@ -40,8 +35,8 @@ class Comment extends Component {
                           Cool Sign Up
                         </a> */}
             <div className="mic-info">
-              By: <a href="#">{comment.owner.username}</a> on{" "}
-              <a href="#">
+              By: <Link to="/user">{comment.owner.username}</Link>
+              <Link to="/user">
                 <Moment format="DD MMM YYYY" date={comment.createdAt} />
                 <Button
                   variant="light"
@@ -55,7 +50,7 @@ class Comment extends Component {
                 >
                   <FaThumbsDown /> {comment.dislikes.length}
                 </Button>
-              </a>
+              </Link>
             </div>
           </div>
           <div className="comment-text">

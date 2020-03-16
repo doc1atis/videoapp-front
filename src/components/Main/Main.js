@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Accordion, Card } from "react-bootstrap";
-import { FaCaretDown } from "react-icons/fa";
+import { Container, Row, Col } from "react-bootstrap";
 import VideoPlayer from "../VideoPlayer/VideoPlayer";
 import Recommendation from "../Recommendation/Recommendation";
 import { connect } from "react-redux";
-import Moment from "react-moment";
+import InfoBar from "../InfoBar/InfoBar";
 import "./Main.css";
 class Header extends Component {
   render() {
@@ -24,87 +23,10 @@ class Header extends Component {
                     <VideoPlayer />
                   </Col>
                 </Row>
+                {/* Info bar row */}
                 <Row>
                   <Col xl={12}>
-                    <Accordion className="mb-3">
-                      <Card>
-                        <Card.Header style={{ backgroundColor: "#221E20" }}>
-                          <Row
-                            style={{
-                              backgroundColor: "#E9ECEF",
-                              paddingRight: "1rem"
-                            }}
-                          >
-                            <Col xs={{ span: 6, offset: 0 }}>
-                              <p
-                                style={{
-                                  color: "black",
-                                  paddingTop: "0.5rem",
-
-                                  fontSize: "0.8rem",
-                                  overflow: "hidden",
-                                  display: "-webkit-box",
-                                  WebkitLineClamp: "3",
-                                  WebkitBoxOrient: "vertical",
-                                  textTransform: "capitalize",
-                                  textAlign: "left"
-                                }}
-                              >
-                                {this.props.video.id
-                                  ? this.props.video.snippet.title
-                                  : null}
-                              </p>
-                            </Col>
-
-                            <Col xs={{ span: 4, offset: 0 }}>
-                              <p
-                                style={{
-                                  textAlign: "right",
-                                  color: "black",
-                                  paddingTop: "0.7rem",
-                                  fontSize: "0.1rem",
-                                  textTransform: "capitalize"
-                                }}
-                              >
-                                {this.props.video.id ? (
-                                  <Moment
-                                    format="DD MMM YYYY"
-                                    date={this.props.video.snippet.publishedAt}
-                                  />
-                                ) : null}
-                              </p>
-                            </Col>
-                            <Col xs={{ span: 1, offset: 0 }}>
-                              <Accordion.Toggle
-                                as={FaCaretDown}
-                                variant="icon"
-                                eventKey="1"
-                                style={{
-                                  color: "#221E20",
-                                  cursor: "pointer",
-                                  fontSize: "1.8rem"
-                                }}
-                              ></Accordion.Toggle>
-                            </Col>
-                          </Row>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey="1">
-                          <Card.Body>
-                            <p
-                              style={{
-                                color: "black",
-                                textAlign: "left",
-                                fontSize: "0.9rem"
-                              }}
-                            >
-                              {this.props.video.id
-                                ? this.props.video.snippet.description
-                                : null}
-                            </p>
-                          </Card.Body>
-                        </Accordion.Collapse>
-                      </Card>
-                    </Accordion>
+                    <InfoBar video={this.props.video} />
                   </Col>
                 </Row>
               </Col>
@@ -136,8 +58,6 @@ const mapStateToProps = entireState => {
   if (!video) {
     video = entireState.randomVideoReducer.video;
   }
-  console.log("olgy video1  is: ", entireState.newVideoReducer);
-  console.log("olgy video2  is: ", entireState.randomVideoReducer.video);
 
   return { video };
 };

@@ -125,6 +125,30 @@ header.masthead .bg-circle-4 {
     font-size: 4rem;
   }
 }
+@media (min-width: 100px) {
+  header.masthead {
+    padding-top: calc(3.5rem + 55px) !important;
+    padding-bottom: 10rem;
+  }
+  header.masthead .masthead-content .masthead-heading {
+    font-size: 6rem;
+  }
+  header.masthead .masthead-content .masthead-subheading {
+    font-size: 4rem;
+  }
+}
+@media (min-width: 760px) {
+  header.masthead {
+    padding-top: calc(2rem + 55px) !important;
+    padding-bottom: 10rem;
+  }
+  header.masthead .masthead-content .masthead-heading {
+    font-size: 6rem;
+  }
+  header.masthead .masthead-content .masthead-subheading {
+    font-size: 4rem;
+  }
+}
 
 .bg-primary {
   background-color: #ee0979 !important;

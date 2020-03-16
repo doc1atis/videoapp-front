@@ -6,6 +6,7 @@ import * as actions from "../../redux/actionCreators";
 import { FaAlignJustify, FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import AddComment from "../AddComment/AddComment";
 import { Row, Col, Overlay, Button, ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./Post.css";
 
 class Post extends Component {
@@ -36,7 +37,7 @@ class Post extends Component {
     let { post } = this.props;
 
     // wtf - why did I need to reference the posts from redux to pick up the changes to the comments subdocument. It was updating in redux dev tools but it wasnt updating the list in my ui. !very wierd!
-    let populatedPost = this.props.posts.find(x => x._id == post._id);
+    let populatedPost = this.props.posts.find(x => x._id === post._id);
 
     if (post.comments) {
       comments = populatedPost.comments.map((comment, i) => (
@@ -56,8 +57,8 @@ class Post extends Component {
           </div>
           <div className="col-xs-8 col-md-10">
             <div className="mic-info">
-              By: <a href="#">{post.owner.username}</a> on{" "}
-              <a href="#">
+              By: <Link to="/user">{post.owner.username}</Link>
+              <Link to="/user">
                 <Moment format="DD MMM YYYY" date={post.createdAt} />
                 <Button
                   variant="light"
@@ -71,7 +72,7 @@ class Post extends Component {
                 >
                   <FaThumbsDown /> {post.dislikes.length}
                 </Button>
-              </a>
+              </Link>
             </div>
 
             <div className="comment-text">

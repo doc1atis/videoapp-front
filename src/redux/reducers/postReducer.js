@@ -19,7 +19,7 @@ export default function(state = initialState, action) {
       };
 
     case actionTypes.CREATE_COMMENT:
-      let postIndex = state.posts.findIndex(x => x._id == action.payload.post);
+      let postIndex = state.posts.findIndex(x => x._id === action.payload.post);
       let stateCopy = { ...state };
       let posts = [...stateCopy.posts];
 
@@ -34,7 +34,9 @@ export default function(state = initialState, action) {
       };
 
     case actionTypes.DELETE_COMMENT:
-      let postIndex2 = state.posts.findIndex(x => x._id == action.payload.post);
+      let postIndex2 = state.posts.findIndex(
+        x => x._id === action.payload.post
+      );
       let stateCopy2 = { ...state };
       let posts2 = [...stateCopy2.posts];
 
@@ -48,13 +50,15 @@ export default function(state = initialState, action) {
       };
 
     case actionTypes.LIKE_COMMENT:
-      let postIndex5 = state.posts.findIndex(x => x._id == action.payload.post);
+      let postIndex5 = state.posts.findIndex(
+        x => x._id === action.payload.post
+      );
 
       let stateCopy5 = { ...state };
       let posts5 = [...stateCopy5.posts];
 
       let commentIdx = posts5[postIndex5].comments.findIndex(
-        x => x._id == action.payload._id
+        x => x._id === action.payload._id
       );
 
       posts5[postIndex5].comments[commentIdx] = action.payload;
@@ -65,13 +69,15 @@ export default function(state = initialState, action) {
       };
 
     case actionTypes.DISLIKE_COMMENT:
-      let postIndex6 = state.posts.findIndex(x => x._id == action.payload.post);
+      let postIndex6 = state.posts.findIndex(
+        x => x._id === action.payload.post
+      );
 
       let stateCopy6 = { ...state };
       let posts6 = [...stateCopy6.posts];
 
       let commentIdx2 = posts6[postIndex6].comments.findIndex(
-        x => x._id == action.payload._id
+        x => x._id === action.payload._id
       );
 
       posts6[postIndex6].comments[commentIdx2] = action.payload;
@@ -82,7 +88,7 @@ export default function(state = initialState, action) {
       };
 
     case actionTypes.LIKE_POST:
-      let postIndex3 = state.posts.findIndex(x => x._id == action.payload._id);
+      let postIndex3 = state.posts.findIndex(x => x._id === action.payload._id);
 
       let stateCopy3 = { ...state };
       let posts3 = [...stateCopy3.posts];
@@ -95,7 +101,7 @@ export default function(state = initialState, action) {
       };
 
     case actionTypes.DISLIKE_POST:
-      let postIndex4 = state.posts.findIndex(x => x._id == action.payload._id);
+      let postIndex4 = state.posts.findIndex(x => x._id === action.payload._id);
 
       let stateCopy4 = { ...state };
       let posts4 = [...stateCopy4.posts];

@@ -6,7 +6,12 @@ import { v4 as uuid } from "uuid";
 class Recommendation extends Component {
   render() {
     return (
-      <Card style={{ padding: "0.5rem", backgroundColor: "#221E20" }}>
+      <Card
+        style={{
+          padding: "0.5rem",
+          backgroundColor: "#221E20"
+        }}
+      >
         {this.props.videos.map(video => {
           const { snippet, id } = video;
           const { title, thumbnails, description, publishedAt } = snippet;

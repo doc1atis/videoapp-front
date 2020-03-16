@@ -5,12 +5,13 @@ import ReactPlayer from "react-player";
 import Spinner from "../Spinner/Spinner";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actionCreators";
-
+import { randomVideo } from "../../redux/actionCreators/video";
 class VideoPlayer extends Component {
+  //   "https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
+  // `https://www.youtube.com/watch?v=${this.props.video.id}`
   render() {
     let display = <Spinner />;
-
-    if (this.props.video) {
+    if (this.props.video.id) {
       display = (
         <ResponsiveEmbed aspectRatio="16by9">
           <ReactPlayer
@@ -27,7 +28,9 @@ class VideoPlayer extends Component {
                 playerVars: {
                   modestbranding: 1,
                   fs: 0,
-                  origin: "http://localhost:3000"
+                  origin: window.location.origin,
+                  showinfo: 0,
+                  iv_load_policy: 3
                 }
               }
             }}
@@ -62,7 +65,8 @@ const mapStateToProps = entireState => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getPosts: videoId => dispatch(actions.postActions.GetPosts(videoId))
+  getPosts: videoId => dispatch(actions.postActions.GetPosts(videoId)),
+  randomVideo: () => dispatch(randomVideo())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(VideoPlayer);
