@@ -49,7 +49,7 @@ class Post extends Component {
         <div className="row">
           <div className="col-xs-1 col-md-1">
             <img
-              src="http://placehold.it/80"
+              src={"/avatar.png"}
               className="img-circle img-responsive"
               alt=""
             />

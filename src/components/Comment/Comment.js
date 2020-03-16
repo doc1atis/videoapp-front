@@ -32,11 +32,7 @@ class Comment extends Component {
     return (
       <div className="row col-11 offset-1 mb-1">
         <div className="col-xs-2 col-md-1 mr-1">
-          <img
-            src="http://placehold.it/80"
-            className="img-circle img-responsive"
-            alt=""
-          />
+          <img src="/avatar.png" className="img-circle img-responsive" alt="" />
         </div>
         <div className="col-xs-10 col-md-10">
           <div>
