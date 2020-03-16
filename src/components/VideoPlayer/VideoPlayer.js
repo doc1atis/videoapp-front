@@ -56,7 +56,6 @@ const mapStateToProps = entireState => {
   let { video, playVideo } = entireState.newVideoReducer;
   if (!video) {
     video = entireState.randomVideoReducer.video;
-
   }
 
   return { video, playVideo };
